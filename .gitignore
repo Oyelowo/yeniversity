@@ -1,5 +1,5 @@
 # Ignore the externally-taught curriculum
-school1/
+school1/target
 
 # Rust build artefacts
 school2/target/
