@@ -154,12 +154,12 @@ $$\neg(P \vee Q) \equiv \neg P \wedge \neg Q$$
 
 Verify the first one:
 
-| P | Q | P ∧ Q | ¬(P ∧ Q) | ¬P | ¬Q | ¬P ∨ ¬Q |
-|---|---|--------|-----------|-----|-----|----------|
-| T | T | T | **F** | F | F | **F** |
-| T | F | F | **T** | F | T | **T** |
-| F | T | F | **T** | T | F | **T** |
-| F | F | F | **T** | T | T | **T** |
+| P | Q | P ∧ Q  | ¬(P ∧ Q) | ¬P  |  ¬Q   | ¬P ∨ ¬Q |
+|---|---|--------|----------|-----|-------|---------|
+| T | T |   T    |   **F**  |  F  |   F   | **F**   |
+| T | F |   F    |   **T**  |  F  |   T   | **T**   |
+| F | T |   F    |   **T**  |  T  |   F   | **T**   |
+| F | F |   F    |   **T**  |  T  |   T   | **T**   |
 
 Columns 4 and 7 are identical → the equivalence holds. ✓
 
@@ -206,10 +206,10 @@ Work these before the next lesson. Write your answers in
 `school2/phase-00-mathematical-maturity/exercises/01-logic-exercises.md`.
 
 **E1.** Classify as proposition / not a proposition:
-- (a) "2 + 2 = 5"
-- (b) "What time is it?"
-- (c) "n is even" (where n is unspecified)
-- (d) "There exists an integer n such that n² = 2"
+- (a) "2 + 2 = 5"   Proposition
+- (b) "What time is it?"  Not Proposition
+- (c) "n is even" (where n is unspecified) Proposition
+- (d) "There exists an integer n such that n² = 2" Not proposition
 
 **E2.** Write out the full truth table (all rows) for each formula:
 - (a) ¬(P → Q)
