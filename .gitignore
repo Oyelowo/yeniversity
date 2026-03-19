@@ -1,0 +1,12 @@
+# Ignore the externally-taught curriculum
+school1/
+
+# Rust build artefacts
+school2/target/
+target/
+
+# IDE / OS noise
+.DS_Store
+.idea/
+.vscode/
+*.iml

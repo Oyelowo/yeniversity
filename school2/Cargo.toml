@@ -1,0 +1,43 @@
+[workspace]
+resolver = "2"
+members = [
+    "phase-00-mathematical-maturity",
+    "phase-01-core-mathematics",
+    "phase-02-classical-physics",
+    "phase-03-chemistry-materials",
+    "phase-04-electronics-hardware",
+    "phase-05-control-theory",
+    "phase-06-robotics",
+    "phase-07-quantum-mechanics",
+    "phase-08-ai-ml",
+    "phase-09-aerodynamics-fluid-dynamics",
+    "phase-10-structural-mechanics",
+    "phase-11-propulsion",
+    "phase-12-optics-imaging",
+    "phase-13-semiconductor-fabrication",
+    "phase-14-vlsi-design",
+    "phase-15-systems-engineering",
+    "projects/ode-solver",
+    "projects/kalman-filter",
+    "projects/matrix-library",
+    "projects/risc-v-cpu",
+    "projects/drone-flight-controller",
+    "projects/pid-controller",
+]
+
+[workspace.dependencies]
+# Linear algebra and numerical computing
+nalgebra     = "0.33"
+ndarray      = "0.15"
+# Random number generation and distributions
+rand         = "0.8"
+rand_distr   = "0.4"
+# Plotting
+plotters     = "0.3"
+# Floating-point comparison in tests
+approx       = "0.5"
+# Complex numbers
+num-complex  = "0.4"
+# Serialisation (for saving simulation state)
+serde        = { version = "1", features = ["derive"] }
+serde_json   = "1"

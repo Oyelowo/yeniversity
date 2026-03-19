@@ -1,0 +1,11 @@
+[package]
+name = "p01-core-mathematics"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+approx = { workspace = true }
+nalgebra = { workspace = true }
+ndarray = { workspace = true }
+rand = { workspace = true }
+rand_distr = { workspace = true }

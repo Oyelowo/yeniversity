@@ -1,0 +1,9 @@
+[package]
+name = "p07-quantum-mechanics"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+nalgebra = { workspace = true }
+num-complex = { workspace = true }
+approx = { workspace = true }

@@ -1,0 +1,11 @@
+[package]
+name = "p08-ai-ml"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+nalgebra = { workspace = true }
+ndarray = { workspace = true }
+rand = { workspace = true }
+rand_distr = { workspace = true }
+approx = { workspace = true }

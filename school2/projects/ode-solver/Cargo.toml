@@ -1,0 +1,11 @@
+[package]
+name = "ode-solver"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "ode-solver"
+path = "src/main.rs"
+
+[dependencies]
+approx = { workspace = true }

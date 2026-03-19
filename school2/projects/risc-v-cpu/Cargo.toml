@@ -1,0 +1,10 @@
+[package]
+name = "risc-v-cpu"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "risc-v-cpu"
+path = "src/main.rs"
+
+[dependencies]

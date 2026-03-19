@@ -1,0 +1,6 @@
+[package]
+name = "p00-math-maturity"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]

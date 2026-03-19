@@ -1,0 +1,11 @@
+[package]
+name = "pid-controller"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "pid-controller"
+path = "src/main.rs"
+
+[dependencies]
+approx = { workspace = true }
