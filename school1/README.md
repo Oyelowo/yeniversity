@@ -67,3 +67,13 @@ Focus on:
 5. Rust refresh for scientific programming
 
 Start with the files in `curriculum/`.
+
+## Where To Start Now
+
+Begin with:
+
+1. `curriculum/11-phase-00-mathematical-maturity.md`
+2. `lecture-notes/01-mathematics/phase-00-mathematical-maturity/00-how-to-study-this-curriculum.md`
+3. `lecture-notes/01-mathematics/phase-00-mathematical-maturity/01-propositions-truth-values-and-connectives.md`
+4. `exercises/01-mathematics/phase-00-mathematical-maturity/01-propositions-truth-values-and-connectives.md`
+5. `PROGRESS.md`

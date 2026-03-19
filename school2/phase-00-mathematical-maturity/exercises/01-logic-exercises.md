@@ -7,16 +7,16 @@ Write your solutions here. Show all reasoning.
 ## E1. Proposition or Not?
 
 (a) "2 + 2 = 5"
-> Your answer:
+> Your answer: 4
 
 (b) "What time is it?"
-> Your answer:
+> Your answer: now(): 01:44PM
 
 (c) "n is even" (n unspecified)
-> Your answer:
+> Your answer: if n % 2 == 0
 
 (d) "There exists an integer n such that n² = 2"
-> Your answer:
+> Your answer: 2^1/2 i.e √2
 
 ---
 
@@ -24,30 +24,30 @@ Write your solutions here. Show all reasoning.
 
 **(a)** ¬(P → Q)
 
-| P | Q | P → Q | ¬(P → Q) |
+| P | Q | P → Q  | ¬(P → Q)  |
 |---|---|--------|-----------|
-| T | T | | |
-| T | F | | |
-| F | T | | |
-| F | F | | |
+| T | T | T      | F         |
+| T | F | F      | T         |
+| F | T | T      | F         |
+| F | F | T      | F         |
 
 **(b)** (P ∨ Q) ∧ ¬P
 
 | P | Q | P ∨ Q | ¬P | (P ∨ Q) ∧ ¬P |
-|---|---|--------|-----|----------------|
-| T | T | | | |
-| T | F | | | |
-| F | T | | | |
-| F | F | | | |
+|---|---|-------|----|--------------|
+| T | T |   T   |  F |        F     |
+| T | F |   T   |  F |        F     |
+| F | T |   T   |  T |        T     |
+| F | F |   F   |  T |        F     |
 
 **(c)** (P → Q) ∧ (Q → P)
 
 | P | Q | P→Q | Q→P | (P→Q)∧(Q→P) |
 |---|---|-----|-----|-------------|
-| T | T | | | |
-| T | F | | | |
-| F | T | | | |
-| F | F | | | |
+| T | T |  T  |  T  |      T      |
+| T | F |  F  |  T  |      F      |
+| F | T |  T  |  F  |      T      |
+| F | F |  T  |  T  |      T      |
 
 ---
 
@@ -55,7 +55,9 @@ Write your solutions here. Show all reasoning.
 
 **(a)** Is P → Q equivalent to Q → P?
 
-> Your answer and truth table:
+> Your answer and truth table: 
+No
+P  Q  P -> Q   Q -> P  (p -> Q) == (Q == P)
 
 **(b)** Is ¬(P → Q) equivalent to P ∧ ¬Q?
 
