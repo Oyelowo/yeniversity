@@ -4,4 +4,5 @@
 //! See `README.md` for the full curriculum.
 
 pub mod logic;
+pub mod quantifiers;
 pub mod sets;
