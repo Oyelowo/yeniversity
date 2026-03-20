@@ -14,8 +14,10 @@ Simplify each formula to its simplest equivalent using the laws. Show every step
 > Your chain:
 > ```
 > ¬(¬P ∨ Q)
->   ≡  ...     [ ]
->   ≡  ...     [ ]
+A = ¬P, B = Q
+De Morgan 2: ¬(A v B) = ¬A ^ ¬B
+>   ≡  ¬(¬P) ^ ¬B     [ De Morgan 2     ]
+>   ≡  P ^ ¬ B        [ Double Negation ]
 > ```
 
 **(b)** P ∧ (P ∨ Q)
@@ -23,7 +25,7 @@ Simplify each formula to its simplest equivalent using the laws. Show every step
 > Your chain:
 > ```
 > P ∧ (P ∨ Q)
->   ≡  ...     [ ]
+>   ≡  P     [ Absorption ]
 > ```
 
 **(c)** (P ∨ Q) ∧ ¬P
@@ -31,9 +33,10 @@ Simplify each formula to its simplest equivalent using the laws. Show every step
 > Your chain:
 > ```
 > (P ∨ Q) ∧ ¬P
->   ≡  ...     [ ]
->   ≡  ...     [ ]
->   ≡  ...     [ ]
+¬P ^ (P v Q)
+>   ≡  (¬P ^ P) v (¬P ^ Q)     [ Distribution ]
+>   ≡  F v (¬P ^ Q)     [ Complement ]
+>   ≡  (¬P ^ Q)     [ Identity ]
 > ```
 > Hint: distribute ∧¬P inward.
 
