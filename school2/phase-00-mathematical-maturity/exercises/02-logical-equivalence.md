@@ -81,6 +81,18 @@ P → (P → Q)
 >
 > The key insight: the ¬ never disappears — it rides in and gets pushed *through* the biconditional
 > by first expanding ↔ then applying De Morgan 1 to split across ∧.
+
+My Second Retry
+Prove: ¬(P ∨ Q) → R  ≡  (¬P ∧ ¬Q) → R
+¬(P ↔ Q) 
+= ¬((P ->  Q) ^   (Q  -> P)) [Biconditional]
+=  ¬(P ->  Q) v  ¬(Q  -> P) [De Morgan 1]
+= ¬(¬P  v  Q) v ¬(¬Q  v  P) [Implication]
+=(¬(¬P) ^ ¬Q) v(¬(¬Q) ^ ¬P) [De Moran 2]   1st part: A=¬P, B=Q| 2nd:A=¬Q, B=P
+=   (P  ^ ¬Q) v   (Q  ^ ¬P) [Double Negation on 1 letters]   
+=   (P  ^ ¬Q) v   (¬P ^ Q)  [Commutativity]   
+
+
 ---
 
 ## E3. Identify the Flaw
