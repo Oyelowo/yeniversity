@@ -169,6 +169,11 @@ Use the algebraic method (laws only) to determine whether each formula is a taut
 
 Show that: **P ↔ Q  ≡  (P ∧ Q) ∨ (¬P ∧ ¬Q)**
 
+Retry:
+P<->Q
+=  (P -> Q) ^ ( Q -> P)   [Biconditional]
+= (¬P v  Q) ^ (¬Q v  P)   [Implication on both sides]
+= ()
 This is the "same-truth-value" reading of the biconditional — it's true exactly when P and Q are both true or both false.
 
 > Your chain:
