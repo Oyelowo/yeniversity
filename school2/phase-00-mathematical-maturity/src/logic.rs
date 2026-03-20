@@ -18,15 +18,13 @@ pub fn truth_table(label: &str, formula: fn(bool, bool) -> bool) {
     }
 }
 
-// (T,T), (T,F), (F,T), (F,F) 
-// **Exercise in code:** Add a function `demorgan_check` that verifies De Morgan's
-// first law computationally by checking all four (P, Q) combinations. Return
-// `true` if the law holds for all of them.
-// | De Morgan 1 | ¬(P ∧ Q) ≡ ¬P ∨ ¬Q |
-// | De Morgan 2 | ¬(P ∨ Q) ≡ ¬P ∧ ¬Q |
-fn demorgan_check(p: bool, q: bool) -> bool {
-    let d1 = !(p && q)  == (!p || !q);
-    let d2 = !(p || q) == (!p || !q);
+/// Verifies both De Morgan laws for the given (p, q):
+///   Law 1: ¬(P ∧ Q)  ≡  ¬P ∨ ¬Q
+///   Law 2: ¬(P ∨ Q)  ≡  ¬P ∧ ¬Q
+/// Returns true if both sides agree for the given inputs (they always must).
+pub fn demorgan_check(p: bool, q: bool) -> bool {
+    let d1 = !(p && q) == (!p || !q); // Law 1
+    let d2 = !(p || q) == (!p && !q); // Law 2  (was: !p || !q — wrong)
     d1 && d2
 }
 
