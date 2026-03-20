@@ -47,17 +47,34 @@ De Morgan 2: ¬(A v B) = ¬A ^ ¬B
 **(a)** Prove: ¬(P ∨ Q) → R  ≡  (¬P ∧ ¬Q) → R
 
 > Your chain:
+¬(P ∨ Q) ≡ ¬P ^ ¬Q           De Morgan 2
+thus:
+(¬P ^ ¬Q) -> R
+
+Final answer:
+¬(P ∨ Q) → R  [De Morgan 2]
+≡  (¬P ∧ ¬Q) → R
 
 **(b)** Prove: P → (P → Q)  ≡  P → Q
 
 > Your chain:
 > Hint: start by expanding the inner P→Q with the Implication law.
+P → (P → Q) 
+≡ (P ^ P) -> Q   [Exporation  P → (Q → R) ≡ (P ∧ Q) → R]
+≡ P -> Q         [Idempotence P ∧ P ≡ P | P ∨ P ≡ P    ]
 
 **(c)** Prove: ¬(P ↔ Q)  ≡  (P ∧ ¬Q) ∨ (¬P ∧ Q)
 
 > Your chain:
 > Hint: expand ↔ using (P→Q)∧(Q→P), then expand each →, then push the ¬ inward with De Morgan.
+¬(P ↔ Q) 
+= (P -> Q) ^ (Q -> P) [Biconditional]
+= (¬P v Q) ^ (¬Q v P) [Implication]
+= ¬(P ^ ¬Q) ^ ¬(Q ^ ¬P) [Demorgan 1 reverse]
+= ¬(P ^ ¬Q) ^ ¬(¬P ^ Q) [Commutativity]
+= ¬P v Q ^ P v ¬Q [Demorgan 1]
 
+= ¬((P ^ ¬Q) v (¬P ^ Q)) [De Morgan 1]
 ---
 
 ## E3. Identify the Flaw
@@ -72,6 +89,8 @@ Each chain below has exactly one wrong step. Find it and write the correct versi
 ```
 
 > Your answer (which step is wrong and why):
+first step is wrong cos AND was not switched to OR which De Morgan 1 requires.
+Perhaps the bracket too shouldnt be required/used?
 
 **(b)**
 ```
@@ -80,7 +99,7 @@ P → Q
 ```
 
 > Your answer (which step is wrong and why):
-
+The first step is wrong cos the letters P and Q are not swapped.
 ---
 
 ## E4. Tautology or Not?
