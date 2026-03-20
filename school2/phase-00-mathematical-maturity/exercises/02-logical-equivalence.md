@@ -170,31 +170,34 @@ Use the algebraic method (laws only) to determine whether each formula is a taut
 
 Show that: **P ↔ Q  ≡  (P ∧ Q) ∨ (¬P ∧ ¬Q)**
 
-> RETRY — got to step 2 then stuck on how to distribute (A∨B)∧(C∨D):
-> ```
-> P ↔ Q
->   ≡  (P → Q) ∧ (Q → P)           [ Biconditional ]
->   ≡  (¬P ∨ Q) ∧ (¬Q ∨ P)         [ Implication ×2 ]
->   ← STUCK HERE
-> ```
->
-> KEY PATTERN: (A∨B)∧(C∨D) needs TWO rounds of Distributivity.
-> Treat the entire left side as a single unit X = (¬P∨Q), then:
->
-> ```
->   ≡  ((¬P∨Q) ∧ ¬Q) ∨ ((¬P∨Q) ∧ P)              [ Distributivity: X∧(C∨D)≡(X∧C)∨(X∧D) ]
->   ≡  ((¬P∧¬Q)∨(Q∧¬Q)) ∨ ((¬P∧P)∨(Q∧P))        [ Distributivity ×2, expanding X back ]
->   ≡  ((¬P∧¬Q) ∨ F) ∨ (F ∨ (Q∧P))              [ Complement ×2: Q∧¬Q≡F, ¬P∧P≡F ]
->   ≡  (¬P∧¬Q) ∨ (Q∧P)                           [ Identity ×2: F∨A≡A ]
->   ≡  (P∧Q) ∨ (¬P∧¬Q)                           [ Commutativity of ∧ in both terms ]
-> ```
-
-This is the "same-truth-value" reading of the biconditional — it's true exactly when P and Q are both true or both false.
-
 > Your chain:
 > Hint: start from the Biconditional law P↔Q ≡ (P→Q)∧(Q→P), expand each →, then distribute.
 
-> You got steps 1-2 right, then stalled. The issue: `¬P v Q ^ ¬Q v P` needs brackets — without them
+Let X = (¬P ∨ Q). Then:
+
+X ∧ (¬Q ∨ P)
+  ≡  (X ∧ ¬Q) ∨ (X ∧ P)          [Distributivity: X∧(C∨D) ≡ (X∧C)∨(X∧D)]
+
+Now expand X back in each term:
+
+Left:  (¬P ∨ Q) ∧ ¬Q
+         ≡ (¬P∧¬Q) ∨ (Q∧¬Q)      [Distributivity]
+         ≡ (¬P∧¬Q) ∨ F            [Complement]
+         ≡ (¬P∧¬Q)                 [Identity]
+
+Right: (¬P ∨ Q) ∧ P
+         ≡ (¬P∧P) ∨ (Q∧P)        [Distributivity]
+         ≡ F ∨ (Q∧P)              [Complement]
+         ≡ (Q∧P)                   [Identity]
+
+Recombine:
+  (¬P∧¬Q) ∨ (Q∧P)
+  ≡ (P∧Q) ∨ (¬P∧¬Q)             [Commutativity of ∧ in both terms]
+
+This is the "same-truth-value" reading of the biconditional — it's true exactly when P and Q are both true or both false.
+
+
+> summary
 > ∧ binds tighter than ∨ so it's ambiguous. Write it as `(¬P ∨ Q) ∧ (¬Q ∨ P)`, then distribute.
 >
 > COMPLETED:
