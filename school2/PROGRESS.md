@@ -20,8 +20,8 @@
 ### Lessons Delivered
 | # | Topic | Status |
 |---|-------|--------|
-| 1 | Propositional Logic — propositions, connectives, truth tables | ⏳ |
-| 2 | Logical Equivalence, Tautologies, Contradictions | ❌ |
+| 1 | Propositional Logic — propositions, connectives, truth tables | ✅ |
+| 2 | Logical Equivalence, Tautologies, Contradictions | ⏳ |
 | 3 | Quantifiers — ∀ and ∃, negation of quantified statements | ❌ |
 | 4 | Proof Techniques — direct, contrapositive, contradiction | ❌ |
 | 5 | Mathematical Induction — weak and strong form | ❌ |
