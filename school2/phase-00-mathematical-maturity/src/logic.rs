@@ -18,6 +18,8 @@ pub fn truth_table(label: &str, formula: fn(bool, bool) -> bool) {
     }
 }
 
+// (T,T), (T,F), (F,T), (F,F) 
+
 #[cfg(test)]
 mod tests {
     use super::*;
