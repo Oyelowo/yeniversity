@@ -82,15 +82,16 @@ P → (P → Q)
 > The key insight: the ¬ never disappears — it rides in and gets pushed *through* the biconditional
 > by first expanding ↔ then applying De Morgan 1 to split across ∧.
 
-My Second Retry
-Prove: ¬(P ∨ Q) → R  ≡  (¬P ∧ ¬Q) → R
-¬(P ↔ Q) 
-= ¬((P ->  Q) ^   (Q  -> P)) [Biconditional]
-=  ¬(P ->  Q) v  ¬(Q  -> P) [De Morgan 1]
-= ¬(¬P  v  Q) v ¬(¬Q  v  P) [Implication]
-=(¬(¬P) ^ ¬Q) v(¬(¬Q) ^ ¬P) [De Moran 2]   1st part: A=¬P, B=Q| 2nd:A=¬Q, B=P
-=   (P  ^ ¬Q) v   (Q  ^ ¬P) [Double Negation on 1 letters]   
-=   (P  ^ ¬Q) v   (¬P ^ Q)  [Commutativity]   
+> ✅ RETRY CORRECT (label above was a copy-paste from E2(a) — the proof below is for E2(c)):
+> ```
+> ¬(P ↔ Q)
+>   ≡  ¬((P → Q) ∧ (Q → P))        [ Biconditional ]
+>   ≡  ¬(P → Q) ∨ ¬(Q → P)        [ De Morgan 1 ]
+>   ≡  ¬(¬P ∨ Q) ∨ ¬(¬Q ∨ P)      [ Implication ×2 ]
+>   ≡  (P ∧ ¬Q) ∨ (Q ∧ ¬P)        [ De Morgan 2 ×2: A=¬P,B=Q and A=¬Q,B=P ]
+>   ≡  (P ∧ ¬Q) ∨ (¬P ∧ Q)        [ Commutativity of ∧ in second term ]
+> ```
+> Every step is correct and fully justified.
 
 
 ---
@@ -169,11 +170,25 @@ Use the algebraic method (laws only) to determine whether each formula is a taut
 
 Show that: **P ↔ Q  ≡  (P ∧ Q) ∨ (¬P ∧ ¬Q)**
 
-Retry:
-P<->Q
-=  (P -> Q) ^ ( Q -> P)   [Biconditional]
-= (¬P v  Q) ^ (¬Q v  P)   [Implication on both sides]
-= ()
+> RETRY — got to step 2 then stuck on how to distribute (A∨B)∧(C∨D):
+> ```
+> P ↔ Q
+>   ≡  (P → Q) ∧ (Q → P)           [ Biconditional ]
+>   ≡  (¬P ∨ Q) ∧ (¬Q ∨ P)         [ Implication ×2 ]
+>   ← STUCK HERE
+> ```
+>
+> KEY PATTERN: (A∨B)∧(C∨D) needs TWO rounds of Distributivity.
+> Treat the entire left side as a single unit X = (¬P∨Q), then:
+>
+> ```
+>   ≡  ((¬P∨Q) ∧ ¬Q) ∨ ((¬P∨Q) ∧ P)              [ Distributivity: X∧(C∨D)≡(X∧C)∨(X∧D) ]
+>   ≡  ((¬P∧¬Q)∨(Q∧¬Q)) ∨ ((¬P∧P)∨(Q∧P))        [ Distributivity ×2, expanding X back ]
+>   ≡  ((¬P∧¬Q) ∨ F) ∨ (F ∨ (Q∧P))              [ Complement ×2: Q∧¬Q≡F, ¬P∧P≡F ]
+>   ≡  (¬P∧¬Q) ∨ (Q∧P)                           [ Identity ×2: F∨A≡A ]
+>   ≡  (P∧Q) ∨ (¬P∧¬Q)                           [ Commutativity of ∧ in both terms ]
+> ```
+
 This is the "same-truth-value" reading of the biconditional — it's true exactly when P and Q are both true or both false.
 
 > Your chain:
