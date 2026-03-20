@@ -47,6 +47,26 @@ pub fn logically_equivalent(f: fn(bool, bool) -> bool, g: fn(bool, bool) -> bool
     true
 }
 
+// // Then add tests to verify:
+// // 1. `implies` agrees with the direct Rust `!p || q` expression
+// // 2. `logically_equivalent(|p,q| !(p && q), |p,q| !p || !q)` returns `true` (De Morgan 1)
+// // 3. `logically_equivalent(|p,q| p && !q, |p,q| !p || q)` returns `false` (they are NOT equivalent)
+// In `src/logic.rs`, implement:
+
+// ```rust
+// pub fn implies(p: bool, q: bool) -> bool {
+//     // Use ONLY ! and || — no if, no match
+//     // (must match the Implication law: P→Q ≡ ¬P∨Q)
+//     todo!()
+// }
+
+// pub fn logically_equivalent(
+//     f: fn(bool, bool) -> bool,
+//     g: fn(bool, bool) -> bool,
+// ) -> bool {
+//     // Return true if f and g agree on ALL four (p,q) combinations
+//     todo!()
+// }
 
 
 #[cfg(test)]

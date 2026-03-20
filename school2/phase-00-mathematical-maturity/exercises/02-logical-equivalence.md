@@ -126,6 +126,10 @@ This is the "same-truth-value" reading of the biconditional — it's true exactl
 
 > Your chain:
 > Hint: start from the Biconditional law P↔Q ≡ (P→Q)∧(Q→P), expand each →, then distribute.
+p ↔ Q 
+=== (P -> Q) ^ (Q -> P)
+=== ¬P v Q ^ ¬Q v P
+
 
 ---
 
