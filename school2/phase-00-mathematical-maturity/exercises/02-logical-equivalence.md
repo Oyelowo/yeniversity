@@ -173,6 +173,10 @@ Show that: **P ↔ Q  ≡  (P ∧ Q) ∨ (¬P ∧ ¬Q)**
 > Your chain:
 > Hint: start from the Biconditional law P↔Q ≡ (P→Q)∧(Q→P), expand each →, then distribute.
 
+ — the (A∨B)∧(C∨D) pattern. Internalise this:
+
+When two disjunctions are joined by ∧, treat the left side as a unit and distribute once, then distribute again inside each resulting term. The unwanted terms always cancel via Complement + Identity, leaving only the (P∧Q) and (¬P∧¬Q) cases.
+
 Let X = (¬P ∨ Q). Then:
 
 X ∧ (¬Q ∨ P)
