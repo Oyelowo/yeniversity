@@ -17,7 +17,7 @@ Current focus: `Phase 00 - Mathematical Maturity`
 Goal: rebuild precision in notation, logic, problem-solving, and proof habits before heavier mathematics.
 
 - `[~]` Lesson 00: How to Study This Curriculum
-- `[ ]` Lesson 01: Propositions, truth values, and logical connectives
+- `[~]` Lesson 01: Propositions, truth values, and logical connectives
 - `[ ]` Lesson 02: Implication, equivalence, and converse errors
 - `[ ]` Lesson 03: Sets, elements, subsets, and set operations
 - `[ ]` Lesson 04: Functions, domains, codomains, and graphs
@@ -29,6 +29,7 @@ Goal: rebuild precision in notation, logic, problem-solving, and proof habits be
 Add dated evidence when you actually finish something.
 
 - `2026-03-19`: tracker created; phase and first lesson scaffolded
+- `2026-03-20`: Exercise Sheet 01 completed; review found the main ideas are in place, but truth-table precision and the meaning of inclusive or still need tightening before Lesson 01 is complete
 
 ## Promotion Rule
 
