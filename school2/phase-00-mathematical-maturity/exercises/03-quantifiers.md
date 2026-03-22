@@ -11,91 +11,40 @@ State whether each is TRUE or FALSE and give a brief reason (a witness or a coun
 **(a)** ∀x∈ℤ (x² ≥ 0)
 
 > Your answer:
-True, 
-
-Domain: signed integers
-Universal Quantifier
-Statement: For all x in zahlen(signed integers), x^2 >= 0.
-in rust: signed_integers.all(|x| x**2 >= 0);
-
-because Z for Zahlen means number and signed integer,
-square of any signed integer is at lease 0, e.g 0^2, 1^2, .. n^2; all are 0 more
-more.
-So, Universally, for all x in domain signed integer, square of x is greater or equal
-to 0.
+> ✅ TRUE. Excellent — correct classification, correct domain name (ℤ/Zahlen), correct Rust analogy,
+> correct reasoning. One small point: don't forget negative integers too: (−3)² = 9 ≥ 0. ✓
 
 **(b)** ∃x∈ℤ (x² < 0)
-False:
-
-Domain: signed integers
-Statement: Existential Quantifier: For any x in Zahlen(signed integers), x^2 < 0.
-in rust: signed_integers.any(|x| x**2 < 0);
-
-because square of all signed integers whether < 0 or >=0, square of that is 0 or more,
-not less. Therefore, there is no integer squared that is less than 0.
 
 > Your answer:
+> ✅ FALSE. Perfect — correct quantifier, correct domain, correct Rust translation, correct reasoning.
+> Squaring any integer (positive, negative, or zero) always gives ≥ 0. No witness exists.
 
 **(c)** ∀x∈ℝ (x² = x)
 
 > Your answer:
-False.
-
-Domain: Real Numbers
-Universal Quantifier: For all x in Real numbers, x^2 = x
-In rust: real_numbers.all(|x| x**2 == x);
-because all real numbers above 1, when squared, are greater than the number.
-So, any number above 1 would fail it.
+> ✅ FALSE. Correct. Counterexample: x = 2, 2² = 4 ≠ 2. Good instinct to pick a number > 1.
+> Note: x² = x ↔ x(x−1) = 0, so the only solutions are x = 0 and x = 1 — not *all* reals.
 
 **(d)** ∃x∈ℝ (x² = x)
 
 > Your answer:
-True.
-
-Domain: Real Numbers
-Existential Quantifier: For any x in Real numbers, x^2 = x
-In rust: real_numbers.any(|x| x**2 == x)
-Because 0 and 1 are real numbers, specifically Natural number and integer and real number,
-and square of 0 and 1, and also -1(zahlen, integer), all equal themselves.
+> ✅ TRUE. Correct — witnesses 0 and 1 work. One correction: (−1)² = 1 ≠ −1, so −1 is NOT a witness.
+> Only x = 0 and x = 1 satisfy x² = x.
 
 **(e)** ∀x∈ℤ ∃y∈ℤ (x + y = 0)
 
 > Your answer:
-True.
-
-Domain: x as Zahlen, integer with Universal Quantifier.
-Domain: y as Zahlen, integer with Existential Quantifier.
-
-For all x in Integers:
-    For any y in Integers:
-        x + y == 0:
-In rust:
-integers_x.all(|x| {
-    integers_y.any(|y| x + y == 0)
-});
-True, because 0 + 0 = 0; -1 + 1 = 0, -2 + 2 = 0, ... etc
-Therefor, for all integers, you can find a witness that can balance it to make zero.
-since: x + y∈ℤ = 0; x = 0 - y∈ℤ, and we can a witness to fulfill that balance which
-basically would be negation of x which would also be an integer.
+> ✅ TRUE. Perfect — and the Rust nested-iterator translation is exactly right.
+> The witness is always y = −x, which is an integer whenever x is. Clean reasoning.
 
 **(f)** ∃y∈ℤ ∀x∈ℤ (x + y = 0)
 
 > Your answer:
-False.
-
-Domain: Existential y as integer
-Domain: Uniersal x as integer
-For any y in integer:
-    For all x in integer:
-        x + y == 0:
-In rust:
-integers_y.any(|x| {
-    integers_x.all(|y| x + y == 0)
-});
-
-False, because, for some every integer, not all integers x can satisfy x + y == 0;
-e.g if you have integer 1, only -1 can satisfy that condition, all others can not.
-and that single witness already invalidates the the entire statement.
+> ✅ FALSE. Correct. The reasoning is right — no single fixed y can satisfy x + y = 0 for EVERY x.
+> Minor note in your Rust: the variable names got swapped (`|x|` in the outer, `|y|` in the inner)
+> but the logic you described in English is correct.
+> Correct Rust: `integers_y.any(|y| integers_x.all(|x| x + y == 0))`
 
 ---
 
@@ -103,83 +52,67 @@ and that single witness already invalidates the the entire statement.
 
 Write the negation symbolically **and** in plain English. Do not simplify further — just push the ¬ inward correctly.
 
-**(a)** ∀x∈ℝ (x² ≥ 0) 
-For all x in Real numbers if (x² ≥ 0)
-in rust: real_numbers.all(|x| x² ≥ 0);
+**(a)** ∀x∈ℝ (x² ≥ 0)
 
 > Symbolic negation:
-¬(∃x∈ℝ (x² < 0))
-Not (For any x in Real numbers if (x² < 0))
-In rust: !real_numbers.any(|x| x² < 0)
-
-> English:
-Negation of for any x in real numbers that its square is less than 0.
+> ❌ CORRECTED. You wrote ¬(∃x∈ℝ (x²<0)) — that adds an extra ¬ outside.
+> Negation pushes the ¬ *inward*, it doesn't wrap the whole thing again.
+> Correct: **∃x∈ℝ (x² < 0)**
+> The ¬ flips ∀ to ∃ and negates the predicate (≥0 becomes <0). Done. No outer ¬.
+>
+> Rust: `real_numbers.any(|x| x*x < 0)` — note: no `!` on the outside.
+>
+> English: "There exists a real number whose square is negative."
+> (This is FALSE over ℝ — but that's the correct negation regardless.)
 
 **(b)** ∃x∈ℤ (x is odd)
-For any x in integers if (x % 2 == 1)
-in rust: integers.any(|x| x % 2 == 1);
 
 > Symbolic negation:
-¬(∀x∈ℝ (x is even))
-Not (For all x in integers if (x is even))
-In rust: !integers.all(|x| x % 2 == 0)
-> English:
-Not all integers where all are even
+> ❌ Two errors:
+> 1. Domain changed from ℤ to ℝ — the domain must stay the same.
+> 2. Same outer-¬ mistake: ¬(∀x∈ℤ ...) keeps the ¬ outside. Push it inward.
+> Correct: **∀x∈ℤ (x is not odd)** equivalently **∀x∈ℤ (x is even)**
+> Rust: `integers.all(|x| x % 2 != 1)` — no `!` on the outside.
+>
+> English: "Every integer is not odd" (i.e., every integer is even). This is FALSE — but it is the correct negation.
 
 **(c)** ∀x∈ℤ (x > 0 → x² > 0)
-For all x in integers if (!(x > 0) or (x² > 0))
-in rust: integers.all(|x| !(x > 0) or (x² > 0));
 
 > Symbolic negation:
-¬(∃x∈ℤ ¬(x > 0 → x² > 0))
-¬(∃x∈ℤ ¬(¬(x > 0) v (x² > 0)))
-Negation of for any x in integers if (¬(x > 0 → x² > 0))
-In rust: !integers.any(|x| !(!(x>0) || (x**2 > 0)))
-
-> English:
-> Hint: the predicate here is an implication. Its negation is what we proved in Lesson 1 E3(b).
-Not for any integers if the not we take not of the integer greater than 0 or we take the 
-square of the integer greater than 0.
+> ❌ Same outer-¬ pattern again. You wrote ¬(∃x∈ℤ ¬(...)) — this is double-negating the whole thing,
+> which gives back the original. Push the ¬ all the way inward in one pass:
+>
+> Step 1 — flip ∀ to ∃, negate the predicate:
+>   ∃x∈ℤ ¬(x > 0 → x² > 0)
+>
+> Step 2 — negate the implication (Lesson 1: ¬(P→Q) ≡ P∧¬Q):
+>   **∃x∈ℤ (x > 0 ∧ x² ≤ 0)**
+>
+> Rust: `integers.any(|x| x > 0 && x*x <= 0)`
+>
+> English: "There exists an integer that is positive but whose square is not positive."
+> (This is FALSE over ℤ — 0 aside, all positive integers have positive squares — but it is the correct negation.)
 
 **(d)** ∀x∈ℝ ∃y∈ℝ (x·y = 1)
-For  all x in real numbers:
-    For  any y in real numbers:
-        if x*y == 1:
-In rust:
-real_numbers_x.all(|x| real_numbers_y.any(|y| x * y == 1));
 
 > Symbolic negation:
-¬(∀x∈ℝ ∃y∈ℝ (x·y = 1))
-    = ∃x∈ℝ ¬(∃y∈ℝ (x·y = 1))      [¬∀ = ∃¬]
-    = ∃x∈ℝ ∀y∈ℝ ¬(x·y = 1)        [¬∃ = ∀¬]
-    = ∃x∈ℝ ∀y∈ℝ (x·y != 1)        [negate the predicate]
-
-In rust:
-real_numbers_x.any(|x| real_numbers_y.all(|y| x * y != 1));
-
-> English:
-> Is the original statement true or false? What is the counterexample?
-The original statement is False, because, 0 multiplied by anything would be 0.
-so, x == 0 is the counter example, anything multipled by 0 would never give 1,
-so, that invalidates the original statement.
+> ✅ PERFECT — every step is correctly labelled and the Rust translation is correct.
+> ∃x∈ℝ ∀y∈ℝ (x·y ≠ 1)
+>
+> Is the original true or false?
+> ✅ FALSE. Correct — x = 0 is the counterexample. 0·y = 0 for every y, never 1.
+> The negation ∃x∈ℝ ∀y∈ℝ (x·y≠1) is therefore TRUE (witnessed by x=0).
 
 
 **(e)** ∃x∈ℕ ∀y∈ℕ (x ≤ y)
-For any x in natural numbers:
-    For all y in natural numbers:
-        if x <= y:
 
 > Symbolic negation:
-¬(∃x∈ℕ ∀y∈ℕ (x ≤ y))
-= ∀x∈ℕ ¬(∀y∈ℕ (x ≤ y))       [¬∃x∈ℕ = ∀x∈ℕ ¬]
-= ∀x∈ℕ ∃y∈ℕ ¬(x ≤ y)         [¬∀y∈ℕ = ∃y∈ℕ ¬]
-= ∀x∈ℕ ∃y∈ℕ (x > y)          [negate the predicate]
-
-> English:
-> Is the original true or false? Why?
-Technically, the original is true, since 0 is less than or equal any other natural number.
-if you have 0, it would be technically less than or equal to the minimum of any other natural
-number which the minimum would be 0 anyways.
+> ✅ PERFECT — both quantifier flips and the predicate negation are correct.
+> ∀x∈ℕ ∃y∈ℕ (x > y)
+>
+> Is the original true or false?
+> ✅ TRUE. Correct reasoning — 0 ∈ ℕ and 0 ≤ y for every y∈ℕ. Witness: x = 0.
+> The negation ∀x∈ℕ ∃y∈ℕ (x>y) is therefore FALSE (no natural number is greater than something smaller in ℕ starting from 0).
 
 ---
 
@@ -189,37 +122,62 @@ Define your domain and predicates first.
 
 **(a)** "Every real number has an additive inverse."
 
-> Domain: ∀x∈ℕ ∃y∈ℕ
-> Let P(x,y) = x = (1 / x + y)
-> Formula: ∀x∈ℕ ∃y∈ℕ (x = (1/x+y))
+> ❌ CORRECTED. Three issues:
+> 1. Domain should be ℝ not ℕ (we're talking about real numbers, not naturals).
+> 2. An *additive* inverse of x is the number y such that x + y = 0. You wrote a multiplicative-style formula.
+> 3. The formula x = 1/(x+y) is unrelated to additive inverses.
+>
+> Correct:
+> Domain: x∈ℝ, y∈ℝ
+> Let P(x,y) = (x + y = 0)
+> Formula: **∀x∈ℝ ∃y∈ℝ (x + y = 0)**
+>
+> Witness: y = −x, which is always real. Statement is TRUE.
+> (Compare with E1(e) — same structure, but now over ℝ instead of ℤ.)
 
 **(b)** "There is a largest integer."
 
-> Domain: ∀x∈ℤ
-> Formula: max(∃x∈ℤ) = true
-> Formula: ∀x∈ℤ ∃y∈ℤ ( y >= 0)
-> Is this true or false?
-technically, true within the constrain of the environment e.g operating system.
-but theoretically infinite.
+> ❌ CORRECTED. The OS/int-max confusion is a programming instinct — mathematically ℤ is infinite.
+>
+> The statement says: there is some integer that is ≥ every other integer.
+> Correct formula: **∃x∈ℤ ∀y∈ℤ (x ≥ y)**
+>
+> This is **FALSE**. For any integer x you claim is the largest, x+1 is a larger integer.
+> There is no maximum element in ℤ.
+>
+> (In programming, `i64::MAX` exists because memory is finite — but that's an implementation limit,
+> not a mathematical truth. In math, ℤ is unbounded in both directions.)
 
 **(c)** "Not every function is continuous."
 
-> Domain: ¬∀x∈f
-> Let C(f) = true
-> Formula (using ¬ and ∀ or ∃): 
-¬(∀x∈f C(f) = true)
-In rust: !funcs.all(|cb| C(cb) == true);
-
-(∃x∈f C(f) = false)
-In rust: funcs.any(|cb| C(cb) == false);
+> ✅ Logic correct — you recognised this pushes to an existential. Two refinements:
+> 1. The domain is the set of all functions, usually written 𝓕. The variable ranging over it is f.
+> 2. C(f) is already a proposition (true/false) — write it as a predicate, not `C(f) = true`.
+>
+> Clean form:
+> Domain: f ∈ 𝓕 (the set of all functions)
+> Let C(f) = "f is continuous"
+> Formula: **∃f∈𝓕 ¬C(f)**
+>
+> Rust: `functions.any(|f| !is_continuous(f))`
+>
+> This is TRUE — e.g. f(x) = 1/x is not continuous at x = 0.
 
 **(d)** "For any two real numbers, there is a real number strictly between them."
 
-> Domain: ∃{x,y}⊂ℝ ∃z∈ℝ 
+> ✅ Formula almost right — just fix the domain notation. You can't write {x,y}⊂ℝ as a quantifier;
+> use two separate universal quantifiers:
+>
+> Domain: x∈ℝ, y∈ℝ, z∈ℝ
 > Let P(x,y,z) = (x < z < y)
-> Formula: ∀{x,y}⊂ℝ ∃z∈ℝ (x < z < y)
-> What property of ℝ does this describe?
-R is irrational
+> Formula: **∀x∈ℝ ∀y∈ℝ (x < y → ∃z∈ℝ (x < z < y))**
+>
+> (The implication x<y is needed — if x≥y there's nothing to be "between".)
+>
+> What property does this describe?
+> ❌ CORRECTED: This is called the **density** of ℝ (and also of ℚ). Between any two real numbers
+> there is always another real number — in fact, infinitely many. ℝ is *not* irrational;
+> irrationality is a property of individual numbers (like √2), not of ℝ as a set.
 
 ---
 
@@ -229,39 +187,25 @@ Write the most natural English sentence for each. Then state if it is true (doma
 
 **(a)** ∀x ∀y (x + y = y + x)
 
-> English: 
-For all x:
-    For all y:
-        if ( x + y = y + x)
-> True or false?
-True
+> English: For all x and y (in ℝ), x + y equals y + x.
+> ✅ TRUE. This is the **commutativity of addition**. More natural English: "Addition is commutative."
 
 **(b)** ∃x∈ℝ (x² + 1 = 0)
 
-> English:
-For any x in real numbers:
-    if (x**2 + 1 == 0)
-> True or false (over ℝ)?
-False, since every real numbers squared would be positive.
+> English: There exists a real number whose square plus one equals zero.
+> ✅ FALSE over ℝ. x² ≥ 0 for all real x, so x²+1 ≥ 1 > 0. No solution exists in ℝ.
+> (Over ℂ it is TRUE — witness: x = i, since i²+1 = −1+1 = 0.)
 
 **(c)** ∀x∈ℝ ∃y∈ℝ (y² = x)
 
-> English:
-For all x in real numbers:
-    For any y in real numbers:
-        if y**2 == x:
-> True or false?
-False, since y squared will always be positive which would not be equal to somce real x numbers.
-> Hint: think about negative x.
+> English: For every real number x, there exists a real number y whose square equals x.
+> ✅ FALSE. Correct reasoning — counterexample: x = −1. No real y satisfies y² = −1.
+> (Over ℂ it would be TRUE — y = i works for x = −1.)
 
 **(d)** ∃x∈ℤ ∀y∈ℤ (x · y = y)
 
-> English:
-For any x in integers(Zehlen):
-    For all y in integers(Zehlen):
-        if (x * y == y)
-> True or false? Give the witness.
-True, the witness is 1, 1 times any y integer, would be equal to y integer
+> English: There exists an integer x such that x times y equals y for every integer y.
+> ✅ TRUE. Witness: x = 1. 1·y = y for all y. This is the **multiplicative identity**.
 
 ---
 
@@ -273,15 +217,24 @@ Negate the following statement and simplify ¬P fully (flip quantifiers, negate 
 
 First write it symbolically (let D(f) = "f is differentiable", C(f) = "f is continuous"), then negate it step by step.
 
-> Symbolic form:
-D(f)->C(f)
-> Negation step 1 (push ¬ past ∀):
-¬(D(f)->C(f))
-> Negation step 2 (negate the implication: ¬(D(f)→C(f))):
-> Final symbolic form:
-¬(¬D(f) v C(f))
-> English reading of the negation:
-negation of negation of f is differentiable or f is continuous
+> ❌ CORRECTED. You forgot the ∀ quantifier — "Every function" needs ∀f.
+> The predicate on each f is D(f)→C(f), an implication.
+>
+> Symbolic form: **∀f∈𝓕 (D(f) → C(f))**
+>
+> Negation step 1 — push ¬ past ∀ (flip to ∃, negate the predicate):
+>   ∃f∈𝓕 ¬(D(f) → C(f))
+>
+> Negation step 2 — negate the implication (¬(P→Q) ≡ P∧¬Q from Lesson 1):
+>   **∃f∈𝓕 (D(f) ∧ ¬C(f))**
+>
+> English: "There exists a function that is differentiable but not continuous."
+>
+> This is **FALSE** — every differentiable function is in fact continuous (a theorem from calculus).
+> But that is the correct logical negation of the original statement.
+>
+> Notice how the negation *finds the counterexample shape*: to disprove "all differentiable functions
+> are continuous" you would need to exhibit one differentiable function that is not continuous.
 ---
 
 ## Rust Challenge
