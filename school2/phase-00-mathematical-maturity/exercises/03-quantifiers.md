@@ -138,16 +138,27 @@ State whether each is TRUE or FALSE and give a brief reason (a witness or a coun
 Write the negation symbolically **and** in plain English. Do not simplify further — just push the ¬ inward correctly.
 
 **(a)** ∀x∈ℝ (x² ≥ 0)
-
+Attempt 2:
 > **Your answer:**
-> For all x in Real numbers if (x² ≥ 0)
-> in rust: real_numbers.all(|x| x² ≥ 0);
+Original stated
+For all x in Real numbers:
+    if (x² ≥ 0)
+> in rust: 
+real_numbers.all(|x| x² ≥ 0);
 >
-> Symbolic negation: ¬(∃x∈ℝ (x² < 0))
-> Not (For any x in Real numbers if (x² < 0))
-> In rust: !real_numbers.any(|x| x² < 0)
+> Symbolic negation: 
+¬(∀x∈ℝ (x² ≥ 0))
+= ∃x∈ℝ ¬(x² >= 0)     [¬∀x∈ℝ = ∃x∈ℝ¬]
+= ∃x∈ℝ (x² < 0)     [Flip the predicate]
+
+> For any x in Real numbers:
+    if (x² < 0)
+
+> In rust: 
+real_numbers.any(|x| x² < 0)
 >
-> English: Negation of for any x in real numbers that its square is less than 0.
+> English: There exists a real number whose square is less than 0
+False, because all real numbers squared become positive or 0
 
 > **Tutor feedback:**
 > ❌ CORRECTED. You wrote ¬(∃x∈ℝ (x²<0)) — that wraps the result in an extra ¬.
@@ -168,11 +179,18 @@ Write the negation symbolically **and** in plain English. Do not simplify furthe
 > For any x in integers if (x % 2 == 1)
 > in rust: integers.any(|x| x % 2 == 1);
 >
-> Symbolic negation: ¬(∀x∈ℝ (x is even))
-> Not (For all x in integers if (x is even))
-> In rust: !integers.all(|x| x % 2 == 0)
+> Symbolic negation: 
+¬(∃x∈ℤ (x is odd))
+= ∀x∈ℤ ¬(x is odd)   [¬∃x∈ℤ = ∀x∈ℤ¬]
+= ∀x∈ℤ (x is even)   [flip the predicate]
+
+> For all x in integers:
+    if (x is even)
+
+> In rust: 
+integers.all(|x| x % 2 == 0)
 >
-> English: Not all integers where all are even
+> English: All integers where all are even
 
 > **Tutor feedback:**
 > ❌ Two errors:
@@ -187,18 +205,36 @@ Write the negation symbolically **and** in plain English. Do not simplify furthe
 
 **(c)** ∀x∈ℤ (x > 0 → x² > 0)
 
+Attempt 2
 > **Your answer:**
 > For all x in integers if (!(x > 0) or (x² > 0))
 > in rust: integers.all(|x| !(x > 0) or (x² > 0));
 >
-> Symbolic negation: ¬(∃x∈ℤ ¬(x > 0 → x² > 0))
-> ¬(∃x∈ℤ ¬(¬(x > 0) v (x² > 0)))
-> Negation of for any x in integers if (¬(x > 0 → x² > 0))
-> In rust: !integers.any(|x| !(!(x>0) || (x**2 > 0)))
->
-> English: Not for any integers if the not we take not of the integer greater than 0 or we
-> take the square of the integer greater than 0.
+¬(P->Q) 
+= ¬(¬P v Q)    [Implication law]
+= P ^ ¬Q    [De Morgan 2: ¬(A v B) = ¬A ^ ¬B], where A = ¬P, B = Q
 
+> Symbolic negation: 
+¬(∀x∈ℤ (x > 0 → x² > 0))
+= ∃x∈ℤ (x > 0 → x² > 0)        [¬∀x∈ℤ = ∃x∈ℤ¬]
+= ∃x∈ℤ ¬(x > 0 → x² > 0)       [Negate predicate inside]
+= ∃x∈ℤ (x > 0 ^ ¬(x² > 0))     [P->Q = P ^ ¬Q proven from above]
+= ∃x∈ℤ (x > 0 ^ x² <= 0)       [Apply negation to rhs]
+
+> Negation of for any x in integers if (¬(x > 0 → x² > 0))
+> In rust: integers.any(|x| !(!(x>0) || (x**2 > 0)))
+>
+> English: 
+For any x in integers(Zehlan):
+    if (x > 0 ^ x² <= 0):
+
+There exists an integer that is positive and its square is negative or 0.
+False: There is no intger greater than 0, yet with square less than or equal 0.
+Only 0 squared is less than or equal zero but 0 is not greater than zero, so changes nothing.
+
+In rust:
+integers.any(|x| (x > 0) && (x**2 <= 0))
+----
 > **Tutor feedback:**
 > ❌ CORRECTED. You wrote ¬(∃x∈ℤ ¬(...)) — double-negating the whole thing gives back the original.
 > Push the ¬ all the way inward in one pass:
@@ -279,9 +315,12 @@ Define your domain and predicates first.
 **(a)** "Every real number has an additive inverse."
 
 > **Your answer:**
-> Domain: ∀x∈ℕ ∃y∈ℕ
-> Let P(x,y) = x = (1 / x + y)
-> Formula: ∀x∈ℕ ∃y∈ℕ (x = (1/x+y))
+Attempt 2
+> Domain: ∀x∈ℝ ∃y∈ℝ
+> Let P(x,y) = x + y = 0 
+> Formula: ∀x∈ℝ ∃y∈ℝ (x+y = 0)
+For all x in real numbers, there exists a real number y with an additive inverse to x
+Witness: y = -x, there is always a real inverse number, so statement is TRUE.
 
 > **Tutor feedback:**
 > ❌ CORRECTED. Three issues:
@@ -301,12 +340,13 @@ Define your domain and predicates first.
 **(b)** "There is a largest integer."
 
 > **Your answer:**
-> Domain: ∀x∈ℤ
-> Formula: max(∃x∈ℤ) = true
-> Formula: ∀x∈ℤ ∃y∈ℤ ( y >= 0)
+> Domain: ∀x∈ℤ ∃x∈ℤ
+> Formula: 
+∀x∈ℤ ∃y∈ℤ ( x <= y)
+∃x∈ℤ ∀y∈ℤ ( x >= y)
 > Is this true or false?
-> Technically, true within the constraint of the environment e.g operating system.
-> but theoretically infinite.
+> FALSE, because integers are mathematically infinite. so, there is always x + 1 for every x.
+Different, from computers/programming with implementation finiteness.
 
 > **Tutor feedback:**
 > ❌ CORRECTED. The OS/int-max confusion is a programming instinct — mathematically ℤ is infinite.
@@ -351,13 +391,14 @@ Define your domain and predicates first.
 ---
 
 **(d)** "For any two real numbers, there is a real number strictly between them."
-
+Attempt 2
 > **Your answer:**
-> Domain: ∃{x,y}⊂ℝ ∃z∈ℝ
+> Domain: x∈ℝ y∈ℝ z∈ℝ
 > Let P(x,y,z) = (x < z < y)
-> Formula: ∀{x,y}⊂ℝ ∃z∈ℝ (x < z < y)
+> Formula: ∀x∈ℝ ∀y∈ℝ (x<y -> ∃z∈ℝ (x < z < y))
+The guard x <-y is needed because if x >= y, there is no "between"
 > What property of ℝ does this describe?
-> R is irrational
+> Between any two real numbers, there is always another real number.
 
 > **Tutor feedback:**
 > ✅ Formula almost right — just fix the domain notation. {x,y}⊂ℝ is set notation, not a quantifier.
@@ -439,16 +480,22 @@ Negate the following statement and simplify ¬P fully (flip quantifiers, negate 
 
 First write it symbolically (let D(f) = "f is differentiable", C(f) = "f is continuous"), then negate it step by step.
 
+Attempt 2:
 > **Your answer:**
-> Symbolic form: D(f)->C(f)
+> Symbolic form: ∀f∈𝓕 (D(f)->C(f))
 >
 > Negation step 1 (push ¬ past ∀): ¬(D(f)->C(f))
+¬(∀f∈𝓕 (D(f)->C(f)))
+= ∃f∈𝓕 ¬(D(f)->C(f))      [¬∀f∈𝓕 = ∃f∈𝓕¬]
+= ∃f∈𝓕 ¬(¬D(f) v C(f))    [Implication law]
+= ∃f∈𝓕 D(f) ^ ¬C(f)       [De Morgan 2: ¬(A v B) = ¬A ^ ¬B, where A=¬D(f), B=C(f)]
 >
 > Negation step 2 (negate the implication):
-> ¬(¬D(f) v C(f))
+> ∃f∈𝓕 D(f) ^ ¬C(f)  
 >
 > English reading of the negation:
-> negation of negation of f is differentiable or f is continuous
+> There exists a function that is differentiable but not continuous.
+> This is FALSE because every differentiable function is continuous (a theorem from calculus). 
 
 > **Tutor feedback:**
 > ❌ CORRECTED. You forgot the ∀ quantifier — "Every function" requires ∀f∈𝓕.
