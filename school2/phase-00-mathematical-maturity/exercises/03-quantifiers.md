@@ -160,7 +160,14 @@ real_numbers.any(|x| x² < 0)
 > English: There exists a real number whose square is less than 0
 False, because all real numbers squared become positive or 0
 
-> **Tutor feedback:**
+> **Tutor feedback (Attempt 2):**
+> ✅ PERFECT. All three steps correctly labelled and the result is right:
+> - ¬∀ flipped to ∃¬, predicate ≥0 negated to <0 ✅
+> - Rust: `real_numbers.any(|x| x² < 0)` — no outer `!` ✅
+> - You noted the negation is FALSE over ℝ while still being the correct logical form ✅
+> That last point is exactly the right level of understanding: "correct negation" and "true statement" are separate questions.
+
+> **Tutor feedback (Attempt 1):**
 > ❌ CORRECTED. You wrote ¬(∃x∈ℝ (x²<0)) — that wraps the result in an extra ¬.
 > Negation pushes the ¬ *inward*; it doesn't wrap the whole flipped statement again.
 > Correct: **∃x∈ℝ (x² < 0)**
@@ -192,7 +199,14 @@ integers.all(|x| x % 2 == 0)
 >
 > English: All integers where all are even
 
-> **Tutor feedback:**
+> **Tutor feedback (Attempt 2):**
+> ✅ PERFECT. ¬∃ flipped to ∀¬, predicate negated from "odd" to "even". Final form ∀x∈ℤ (x is even) ✅
+> Rust: `integers.all(|x| x % 2 == 0)` ✅ — and this is actually more correct than the old
+> feedback's suggestion of `x % 2 != 1`: in Rust, `-3 % 2 == -1` (not `1`), so
+> `x % 2 != 1` would incorrectly classify `-3` as even. `x % 2 == 0` correctly identifies
+> all even integers, including negatives. Your answer was better than the original correction. ✓
+
+> **Tutor feedback (Attempt 1):**
 > ❌ Two errors:
 > 1. Domain changed from ℤ to ℝ — the domain must stay the same.
 > 2. Same outer-¬ mistake: you wrote ¬(∀x ...) keeping the ¬ outside. Push it inward.
@@ -234,8 +248,19 @@ Only 0 squared is less than or equal zero but 0 is not greater than zero, so cha
 
 In rust:
 integers.any(|x| (x > 0) && (x**2 <= 0))
+
+> **Tutor feedback (Attempt 2):**
+> ✅ Correct final result. One notation slip:
+> Line 1 of your chain reads `∃x∈ℤ (x > 0 → x² > 0)` — the ¬ is missing from the predicate.
+> Your bracket label `[¬∀x∈ℤ = ∃x∈ℤ¬]` shows you knew ¬ moves inside; it's a typographical slip.
+> The chain should be two steps only:
+>   ∃x∈ℤ ¬(x > 0 → x² > 0)    [¬∀x∈ℤ = ∃x∈ℤ¬]
+>   ∃x∈ℤ (x > 0 ∧ x² ≤ 0)     [¬(P→Q) ≡ P∧¬Q]
+> The separate ¬(P→Q) derivation shown at the top is correct and well-justified. ✅
+> Final form, Rust, and English all correct. ✅
+
 ----
-> **Tutor feedback:**
+> **Tutor feedback (Attempt 1):**
 > ❌ CORRECTED. You wrote ¬(∃x∈ℤ ¬(...)) — double-negating the whole thing gives back the original.
 > Push the ¬ all the way inward in one pass:
 >
@@ -322,7 +347,14 @@ Attempt 2
 For all x in real numbers, there exists a real number y with an additive inverse to x
 Witness: y = -x, there is always a real inverse number, so statement is TRUE.
 
-> **Tutor feedback:**
+> **Tutor feedback (Attempt 2):**
+> ✅ PERFECT. All three errors from attempt 1 corrected:
+> - Domain is ℝ, not ℕ ✅
+> - Predicate is x + y = 0 (additive inverse, not multiplicative) ✅
+> - Formula: ∀x∈ℝ ∃y∈ℝ (x+y = 0) ✅
+> - Witness y = −x identified, truth value TRUE ✅
+
+> **Tutor feedback (Attempt 1):**
 > ❌ CORRECTED. Three issues:
 > 1. Domain should be ℝ not ℕ (we're talking about real numbers, not naturals).
 > 2. An *additive* inverse of x is y such that x + y = 0, not a multiplicative formula.
@@ -348,7 +380,17 @@ Witness: y = -x, there is always a real inverse number, so statement is TRUE.
 > FALSE, because integers are mathematically infinite. so, there is always x + 1 for every x.
 Different, from computers/programming with implementation finiteness.
 
-> **Tutor feedback:**
+> **Tutor feedback (Attempt 2):**
+> ✅ Correct formula and correct truth value (FALSE). Two small notes:
+> 1. The domain line `∀x∈ℤ ∃x∈ℤ` uses `x` twice — the second variable should be `y`.
+>    Write: variables x, y ∈ ℤ (both range over ℤ).
+> 2. You wrote two formulas. The correct translation is `∃x∈ℤ ∀y∈ℤ (x ≥ y)` ✅.
+>    The other one, `∀x∈ℤ ∃y∈ℤ (x ≤ y)`, is a *different* statement ("every integer has
+>    something at least as large" — which is TRUE). Good observation, just label it separately
+>    so it doesn't get confused with the answer to the problem.
+> Reasoning (x+1 is always larger, ℤ is mathematically infinite) is correct. ✅
+
+> **Tutor feedback (Attempt 1):**
 > ❌ CORRECTED. The OS/int-max confusion is a programming instinct — mathematically ℤ is infinite.
 >
 > The statement says: there is some integer that is ≥ every other integer.
@@ -400,7 +442,16 @@ The guard x <-y is needed because if x >= y, there is no "between"
 > What property of ℝ does this describe?
 > Between any two real numbers, there is always another real number.
 
-> **Tutor feedback:**
+> **Tutor feedback (Attempt 2):**
+> ✅ PERFECT. All errors from attempt 1 corrected:
+> - Domain uses separate ∀x∈ℝ ∀y∈ℝ quantifiers ✅
+> - Formula: ∀x∈ℝ ∀y∈ℝ (x < y → ∃z∈ℝ (x < z < y)) ✅
+> - Guard x < y noted with correct reason ✅
+> - Property: "between any two real numbers there is always another" is the exact definition
+>   of the **density of ℝ**. That's the technical name. ✅
+> Minor: "x <-y" appears to be a typo for "x < y". ✓
+
+> **Tutor feedback (Attempt 1):**
 > ✅ Formula almost right — just fix the domain notation. {x,y}⊂ℝ is set notation, not a quantifier.
 > Use two separate universal quantifiers:
 >
@@ -495,6 +546,17 @@ Attempt 2:
 >
 > English reading of the negation:
 > There exists a function that is differentiable but not continuous.
+
+> **Tutor feedback (Attempt 2):**
+> ✅ PERFECT. Every step is correct:
+> - Symbolic form now correctly includes ∀f∈𝓕 ✅
+> - ¬∀f∈𝓕 → ∃f∈𝓕¬ ✅
+> - Implication law: ¬(D(f)→C(f)) = ¬(¬D(f)∨C(f)) ✅
+> - De Morgan 2 applied with A=¬D(f), B=C(f) correctly identified ✅
+> - Final form: ∃f∈𝓕 (D(f) ∧ ¬C(f)) ✅
+> - English reading correct ✅
+> This is textbook-clean. The key fix from attempt 1 (adding ∀f∈𝓕 to the symbolic form) is
+> solid, and you clearly understand WHY it's needed — "every function" quantifies over all functions.
 > This is FALSE because every differentiable function is continuous (a theorem from calculus). 
 
 > **Tutor feedback:**
