@@ -132,12 +132,12 @@ T       F         F
 F       T         T
 F       F         T
 
-3. A shape is a square only if it has four equal sides and four right angles. p<->q
-This is equivalence, cos implication violates p=F, q=T
+3. A shape is a square only if it has four equal sides and four right angles. p->q
+This is implication
 p = A shape is a square
 q = it has four equal sides and four right
 
-p   |   q   |   p->q    |   p<->q
+p   |   q   |   p->q(impl) |   p<->q
 T       T         T           T
 T       F         F           F
 F       T         T           F

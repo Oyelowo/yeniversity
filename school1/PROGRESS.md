@@ -31,6 +31,7 @@ Add dated evidence when you actually finish something.
 - `2026-03-19`: tracker created; phase and first lesson scaffolded
 - `2026-03-20`: Exercise Sheet 01 completed; review found the main ideas are in place, but truth-table precision and the meaning of inclusive or still need tightening before Lesson 01 is complete
 - `2026-03-22`: Lesson 01 completed after correction on inclusive or and clean truth-table construction; Lesson 02 started
+- `2026-03-22`: Exercise Sheet 02 completed and reviewed; implication and converse are mostly understood, but contrapositive notation and the meaning of "only if" still need correction before Lesson 02 is complete
 
 ## Promotion Rule
 
