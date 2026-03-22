@@ -302,7 +302,9 @@ pub fn there_exists(domain: &[i32], predicate: fn(i32) -> bool) -> bool {
 pub fn negation_duality(domain: &[i32], predicate: fn(i32) -> bool) -> bool {
     // ¬(∀x P(x)) ≡ ∃x ¬P(x)  — verify both sides agree
     // todo!()
-    domain.iter().any(|&x| !predicate(x))
+    let lhs = !domain.iter().all(|&x| predicate(x));
+    let rhs = domain.iter().any(|&x| !predicate(x));
+    lhs == rhs
 }
 ```
 
