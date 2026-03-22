@@ -61,22 +61,170 @@ A **predicate** is a sentence with a free variable — not a proposition yet, bu
 
 ---
 
-## 5. The Domain Matters
+## 5. The Standard Number Domains
 
-The same predicate can be true or false depending on the domain.
+These are the domains you will see in almost every proof. Think of each as a progressively larger Rust type.
 
-| Statement | Domain | Truth |
-|-----------|--------|-------|
-| ∀x (x² ≥ 0) | ℝ | TRUE |
-| ∀x (x² ≥ 0) | ℂ | FALSE (i² = −1) |
-| ∃x (x² = 2) | ℝ | TRUE (x = √2) |
-| ∃x (x² = 2) | ℤ | FALSE (√2 ∉ ℤ) |
+Each is a strict subset of the next: **ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ**
+
+```
+u64  →  i64  →  "exact fraction"  →  f64  →  Complex<f64>
+ ℕ   →   ℤ   →        ℚ          →   ℝ   →       ℂ
+```
+
+(In Rust, `f64` is the closest approximation to ℝ, but is technically a finite subset of ℚ
+under the hood — binary fractions. True ℝ is infinite and uncountable. More in Lesson 8.)
+
+### ℕ — Natural numbers `{0, 1, 2, 3, …}`
+
+```rust
+type N = u64; // unsigned: no negatives, no fractions
+```
+
+Whole counting numbers from 0. (Some books start at 1 — convention varies, always check.)
+No negatives, no fractions, no decimals.
+
+- 0 ∈ ℕ ✅  5 ∈ ℕ ✅  −3 ∉ ℕ ❌  1.5 ∉ ℕ ❌
+
+### ℤ — Integers `{…, −2, −1, 0, 1, 2, …}`
+
+```rust
+type Z = i64; // signed: negatives allowed, still no fractions
+```
+
+The Z comes from German *Zahlen* ("numbers"). Extends ℕ with negatives.
+
+- −7 ∈ ℤ ✅  0 ∈ ℤ ✅  1.5 ∉ ℤ ❌
+
+### ℚ — Rationals `{p/q | p,q ∈ ℤ, q ≠ 0}`
+
+```rust
+struct Q { numerator: i64, denominator: i64 } // no built-in; see the `num` crate
+```
+
+All exact fractions. Q comes from *quotient*. Every integer is rational (p/1).
+
+- 1/2 ∈ ℚ ✅  −3/7 ∈ ℚ ✅  √2 ∉ ℚ ❌ (irrational)  π ∉ ℚ ❌
+
+### ℝ — Real numbers
+
+```rust
+type R = f64; // closest Rust approximation
+```
+
+Every point on the number line — all rationals *plus* all irrationals (√2, π, e, …).
+
+- √2 ∈ ℝ ✅  π ∈ ℝ ✅  i ∉ ℝ ❌ (imaginary)
+
+### ℂ — Complex numbers `{a + bi | a, b ∈ ℝ}`
+
+```rust
+// from the `num` crate:
+use num::Complex;
+type C = Complex<f64>; // C { re: a, im: b }
+```
+
+Every number of the form **a + bi**, where **i is defined as √(−1)**, so i² = −1.
+
+```rust
+let i: Complex<f64> = Complex::new(0.0, 1.0);
+let i_squared = i * i; // Complex { re: -1.0, im: 0.0 }
+assert!(i_squared.re < 0.0); // i² = −1 < 0 ← the counterexample to ∀x∈ℂ (x²≥0)
+```
+
+Every real number is complex with imaginary part 0:
+```rust
+let three: Complex<f64> = Complex::new(3.0, 0.0); // 3 + 0i = 3 ∈ ℝ ⊂ ℂ
+```
+
+This is why **ℝ ⊂ ℂ** — every real is a special case of a complex number.
+
+### Key set-membership symbols
+
+| Symbol | Meaning | Programming analogy |
+|--------|---------|---------------------|
+| x ∈ A | x is an element of set A | `A.contains(x)` returns true |
+| x ∉ A | x is not in A | `!A.contains(x)` |
+| A ⊂ B | every element of A is also in B | A's type can always be cast to B's type |
+| A ⊄ B | some element of A is not in B | the cast would fail for some values |
+
+Note: **∈ is element-level** (one object vs one set); **⊂ is set-level** (one whole set inside another).
+- `2 ∈ ℕ` — the number 2 is a member of ℕ
+- `ℕ ⊂ ℤ` — the entire set ℕ is contained inside ℤ
+
+---
+
+## 6. The Domain Matters — Full Explanation
+
+The domain is the set of all values x is allowed to take. A quantifier without a domain is like
+calling a function without passing the collection to iterate over — meaningless.
+
+### Domains are iterables
+
+```rust
+// Math:  ∀x∈D P(x)              ∃x∈D P(x)
+// Rust:
+domain.iter().all(|x| p(x))   domain.iter().any(|x| p(x))
+// Python:
+all(p(x) for x in domain)     any(p(x) for x in domain)
+```
+
+The difference from ordinary iterables: math domains are usually **infinite** (you can't loop
+over all of ℝ), so instead of checking every element you must *reason* about the set's
+structure. The mental model is identical; the mechanism differs.
+
+### Same predicate, different domain, different truth value
+
+Let P(x) = "x² ≥ 0" (non-negative square):
+
+| Domain | ∀x P(x) | Why |
+|--------|---------|-----|
+| ℕ | TRUE | u64 squares are always ≥ 0 |
+| ℤ | TRUE | Squaring a negative int still gives a positive |
+| ℝ | TRUE | Same reason |
+| ℂ | **FALSE** | Counterexample: x = i, i² = −1 < 0 |
+
+Let P(x) = "x² = 2":
+
+| Domain | ∃x P(x) | Why |
+|--------|---------|-----|
+| ℕ | FALSE | No natural number squared equals 2 |
+| ℤ | FALSE | No integer squared equals 2 |
+| ℚ | FALSE | √2 is irrational — cannot be written as p/q |
+| ℝ | **TRUE** | Witness: x = √2 ∈ ℝ |
+
+**Always specify the domain.** The same formula can be true over ℝ and false over ℤ.
+
+### Your predicate must be defined on the domain
+
+You can't ask "is x even?" if x = 3.7. The predicate "x is even" only makes sense for
+integers. In Rust terms: you can't call an `fn(i32) -> bool` predicate on an `f64` input —
+the types don't match. Domains enforce that the predicate is well-typed for every element.
+
+### Bounded quantifiers — restricting via implication
+
+Sometimes you restrict the domain inline with a condition:
+
+```
+∀x∈ℝ, x > 0 ⇒ x² > 0
+```
+
+This is shorthand — the domain is still all of ℝ, but the implication makes the statement
+vacuously true for x ≤ 0 (false antecedent). So it only really constrains positive x.
+
+Negating: ¬(∀x∈ℝ (x>0 → x²>0)) ≡ ∃x∈ℝ (x>0 ∧ x²≤0)
+The negation of the implication inside becomes a conjunction — exactly what we proved in Lesson 1.
+
+### Proof scope: a proof over ℤ does not extend to ℝ
+
+If you prove ∀x∈ℤ P(x), you have said nothing about irrational x. A counterexample in ℤ
+is still a counterexample in ℝ (since ℤ ⊂ ℝ), but a proof in ℤ does not cover all of ℝ.
 
 **Always specify the domain when writing a quantified statement.**
 
 ---
 
-## 6. Negating Quantifiers
+## 7. Negating Quantifiers
 
 The two negation rules — memorise them:
 
@@ -103,7 +251,7 @@ That last example: negating an implication inside a quantifier. The predicate wa
 
 ---
 
-## 7. Nested Quantifiers
+## 8. Nested Quantifiers
 
 When two quantifiers appear, **order is not commutative**.
 
@@ -127,7 +275,7 @@ More examples (domain = ℝ):
 
 ---
 
-## 8. Negating Nested Quantifiers
+## 9. Negating Nested Quantifiers
 
 Push ¬ inward **one quantifier at a time**, left to right:
 
@@ -148,7 +296,7 @@ Never flip two quantifiers at once — always go left to right, one step per qua
 
 ---
 
-## 9. Translation Practice
+## 10. Translation Practice
 
 Converting English ↔ symbolic notation is a core skill for reading and writing proofs.
 
@@ -162,7 +310,7 @@ Converting English ↔ symbolic notation is a core skill for reading and writing
 
 ---
 
-## 10. Rust Code
+## 11. Rust Code
 
 Open `src/quantifiers.rs` (new file). Implement quantifiers over a finite integer slice:
 
