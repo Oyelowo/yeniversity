@@ -18,8 +18,8 @@ Goal: rebuild precision in notation, logic, problem-solving, and proof habits be
 
 - `[~]` Lesson 00: How to Study This Curriculum
 - `[x]` Lesson 01: Propositions, truth values, and logical connectives
-- `[~]` Lesson 02: Implication, equivalence, and converse errors
-- `[ ]` Lesson 03: Sets, elements, subsets, and set operations
+- `[x]` Lesson 02: Implication, equivalence, and converse errors
+- `[~]` Lesson 03: Sets, elements, subsets, and set operations
 - `[ ]` Lesson 04: Functions, domains, codomains, and graphs
 - `[ ]` Lesson 05: Quantifiers and mathematical statements
 - `[ ]` Lesson 06: Proof basics and counterexamples
@@ -32,6 +32,7 @@ Add dated evidence when you actually finish something.
 - `2026-03-20`: Exercise Sheet 01 completed; review found the main ideas are in place, but truth-table precision and the meaning of inclusive or still need tightening before Lesson 01 is complete
 - `2026-03-22`: Lesson 01 completed after correction on inclusive or and clean truth-table construction; Lesson 02 started
 - `2026-03-22`: Exercise Sheet 02 completed and reviewed; implication and converse are mostly understood, but contrapositive notation and the meaning of "only if" still need correction before Lesson 02 is complete
+- `2026-03-22`: Lesson 02 completed after final correction on contrapositive and only-if direction; Lesson 03 started
 
 ## Promotion Rule
 

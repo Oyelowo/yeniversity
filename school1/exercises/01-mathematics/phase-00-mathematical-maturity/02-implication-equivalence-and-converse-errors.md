@@ -152,3 +152,120 @@ because people assume propositions are always symmetric.
 
 2. Why is the contrapositive safer than guessing from intuition?
 It helps to guide thoughts with mathematical proofs
+
+## Tutor Review
+
+### Overall
+
+```text
+Status: pass with corrections
+```
+
+You understand the main ideas:
+
+```text
+implication      p -> q
+converse         q -> p
+contrapositive   !q -> !p
+equivalence      p <-> q
+```
+
+### Strong Parts
+
+1. Part B truth tables are correct.
+2. Part C correctly identifies the converse error.
+3. Part D contrapositives are correct.
+4. Part E.1 and Part E.2 are correct.
+
+### Corrections
+
+#### Part A.4
+
+Your explanation of equivalence is basically pointing at the right truth pattern, but the clean meaning is:
+
+```text
+p <-> q means both p -> q and q -> p are true.
+```
+
+For this problem:
+
+```text
+The sensor is calibrated if and only if the robot can estimate position accurately.
+```
+
+#### Part C.2
+
+There is a notation typo in the exercise:
+
+```text
+Therefore, if a device fails, it was submerged in water. = q -> p
+```
+
+not
+
+```text
+q -> q
+```
+
+The reasoning error is still the same: it incorrectly treats the converse as if it follows from the original implication.
+
+#### Part C.3
+
+Your `q` description should read:
+
+```text
+q = the file is not present in the folder
+```
+
+#### Part E.3
+
+This one is now corrected and the final answer is:
+
+```text
+p = the shape is a square
+q = the shape has four equal sides and four right angles
+```
+
+```text
+p only if q  means  p -> q
+```
+
+So the correct rewrite is:
+
+```text
+If a shape is a square, then it has four equal sides and four right angles.
+```
+
+It is implication, not equivalence.
+
+### Reflection Notes
+
+#### Why the converse is a common trap
+
+Better version:
+
+```text
+The converse is a common trap because people often assume that if p leads to q, then q must also lead back to p, which is not generally true.
+```
+
+#### Why the contrapositive is safer
+
+Better version:
+
+```text
+The contrapositive is safer because it is logically equivalent to the original implication, while the converse is not.
+```
+
+### Memory Summary
+
+```text
+if p then q        => p -> q
+p only if q        => p -> q
+p if q             => q -> p
+p iff q            => p <-> q
+```
+
+```text
+p -> q is false only when:
+p = T and q = F
+```
