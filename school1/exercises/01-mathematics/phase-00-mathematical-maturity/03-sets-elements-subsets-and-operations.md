@@ -12,13 +12,13 @@ C = {{2}, 3}
 
 Say whether each statement is true or false.
 
-1. `2 ∈ A`
-2. `{2} ⊆ A`
-3. `{2} ∈ A`
-4. `B ⊆ A`
-5. `2 ⊆ A`
-6. `{2} ∈ C`
-7. `2 ∈ C`
+1. `2 ∈ A`      = true
+2. `{2} ⊆ A`    = true
+3. `{2} ∈ A`    = false
+4. `B ⊆ A`      = false
+5. `2 ⊆ A`      = false
+6. `{2} ∈ C`    = true
+7. `2 ∈ C`      = false
 
 ## Part B - Compute Set Operations
 
@@ -31,10 +31,11 @@ Y = {3, 4, 5, 6}
 
 Find:
 
-1. `X ∪ Y`
-2. `X ∩ Y`
-3. `X \ Y`
+1. `X ∪ Y`  = {1, 2, 3, 4, 5, 6}
+2. `X ∩ Y`  = {3, 4}
+3. `X \ Y`  = {1, 2, 3, 4, 5, 6}
 4. `Y \ X`
+= {1, 2, 3, 4, 5, 6}
 
 ## Part C - Explain The Difference
 
