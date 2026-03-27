@@ -45,46 +45,56 @@ Thus the contrapositive is true, and therefore the original claim is true.
 **(b)** There is no largest prime number.
 
 > Your answer:
-Claim: There is no largest prime number
+Claim: There is no largest prime number.
 
-Since it's harder to prove the non-existence,
-I'll prove the existence, using contradiction
+Strategy: Contradiction.
 
-¬P->⊥ = P 
-Which means if we can prove that the negation 
-of original claim implies falsehood, then
-we prove that the original claim is TRUE.
+Assume, for contradiction, that there is a largest prime number.
+Then the set of all prime numbers is finite, so we can list it as
 
+{p1, p2, ..., pn}
 
-With that:
-Original Claim: There is no largest prime number
+where each pi is prime and pn is the largest prime.
 
-Original Assumption(P): There is no largest prime number
-Original goal: True
+Let
 
-Restated Claim: There is a largest prime number
-Restate Assumption(¬P): There is largest prime number
-Restated Goal: False
+P = p1 * p2 * ... * pn
 
-For all integer, there exists an integer greater
-∀n ∈ ℤ, ∃m ∈ ℤ, (m>n)
-∃n ∈ ℤ, ∃m ∈ ℤ, (m>n)
+and define
 
-By definition: Integers are infinite,
-n+1>n, m=n+1
+N = P + 1.
 
-which is true
+For each prime pi in the list, pi divides P because pi is one of the factors of P.
+So when N is divided by pi, the remainder is 1:
 
-P=¬(∀n ∈ ℤ, ∃m ∈ ℤ, (m>n))
+N mod pi = 1.
 
-¬P=¬(¬(∀n ∈ ℤ, ∃m ∈ ℤ, (m>n)))
-¬P=∀n ∈ ℤ, ∃m ∈ ℤ, (m>n) is True
-P^¬P
+Therefore none of p1, p2, ..., pn divides N.
 
-Thus:
-Restated Goal negated, we got TRUE.
-¬P->False is False
-This originaal claim is False
+Also, every prime is at least 2, so P >= 2, hence N = P + 1 >= 3 > 1.
+Every integer greater than 1 has a prime divisor, so there exists a prime q such that q | N.
+
+But q cannot be any of p1, p2, ..., pn, because none of those primes divides N.
+So q is a prime not in the supposedly complete list {p1, p2, ..., pn}.
+
+This contradicts the assumption that {p1, p2, ..., pn} contains all prime numbers.
+Therefore there is no largest prime number. □
+
+Rust-style pseudocode:
+
+```rust
+let primes = vec![p1, p2, /* ... */, pn]; // assumed complete list of all primes
+let product: u128 = primes.iter().product();
+let n = product + 1;
+
+for p in &primes {
+    assert_eq!(product % p, 0);
+    assert_eq!(n % p, 1); // so no listed prime divides n
+}
+
+let q = prime_divisor(n); // valid because n > 1
+assert!(!primes.contains(&q)); // contradiction
+```
 
 
 
