@@ -108,50 +108,55 @@ Claim: For all n ∈ ℤ: n² − n is even
 Assumption: n² − n is even for all integers n
 Goal: For both odd and even, n² − n is even
 
-Given A ∨ B. Given A → P. Given B → P. Conclude P.
+Claim: For all n ∈ ℤ, n² − n is even.
 
-Case 1
-A -> P
-A=even
-Assume n is even:
-i.e ∀n ∈ Z, (n is even i.e n%2==0), ∃k ∈ Z, n=2k
+Strategy: Cases.
 
-(2k)² - (2k) = 4k² - 2k = 2(2k² - k)
+Why cases are valid: every integer is either even or odd.
 
-(2k² - k) 
-2k² is closed under multiplication 
-2k² - k is closed under subtraction
-2k² - k replaced by t
-2(2k² - k) = 2t = 2(integers)
+Case 1: n is even.
+Then there exists k ∈ ℤ such that n = 2k. [definition of even]
 
-Proof: 
-∀n ∈ Z, n² − n is even, when n is even
+So
+n² − n = (2k)² − 2k
+      = 4k² − 2k
+      = 2(2k² − k).
 
+Since integers are closed under multiplication and subtraction, 2k² − k ∈ ℤ.
+Therefore n² − n has the form 2(integer), so it is even.
 
-Case 2
-B->P
-B=Odd
-Assume n is odd
-i.e ∀n ∈ Z, (n is odd i.e n%2==1), ∃k ∈ Z, n=2k + 1
+Case 2: n is odd.
+Then there exists k ∈ ℤ such that n = 2k + 1. [definition of odd]
 
-(2k+1)² - (2k+1) 
-((2k+1) * (2k+1)) - (2k+1) 
-= 4k²+2k+2k+1 - 2k+1
-= 4k²+2k+2k - 2k+1+1
-= 4k²+2k+2
-= 2(2k²+k+1)
+So
+n² − n = (2k + 1)² − (2k + 1)
+      = (4k² + 4k + 1) − (2k + 1)
+      = 4k² + 2k
+      = 2(2k² + k).
 
-(2k² + k + 1) 
-2k² is closed under multiplication 
-2k² + k + 1 is closed under addition
-2k² + k + 1 replaced by t
-2(2k² + k + 1) = 2t = 2(integers)
+Since integers are closed under multiplication and addition, 2k² + k ∈ ℤ.
+Therefore n² − n has the form 2(integer), so it is even.
 
-Proof: 
-∀n ∈ Z, n² − n is even, when n is odd
+In both cases, n² − n is even.
+Therefore, for all n ∈ ℤ, n² − n is even. □
 
-All premises A->P, B->P, AvB
-are true.
+Rust-style pseudocode:
+
+```rust
+fn is_even(n: i64) -> bool {
+    n % 2 == 0
+}
+
+fn square_minus_self_is_even(n: i64) -> bool {
+    if is_even(n) {
+        let k = n / 2;
+        n * n - n == 2 * (2 * k * k - k)
+    } else {
+        let k = (n - 1) / 2;
+        n * n - n == 2 * (2 * k * k + k)
+    }
+}
+```
 
 **(d)** For all x ∈ ℝ: if x² = 2, then x ∉ ℚ.
 
