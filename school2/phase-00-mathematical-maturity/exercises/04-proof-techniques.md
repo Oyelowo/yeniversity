@@ -19,54 +19,28 @@ For each claim, state which proof strategy you would use *first* and why (one se
 **(a)** For all n ∈ ℤ: if n³ is odd, then n is odd.
 
 > Your answer:
-i will be using contrapositive cos it's easier to prove n than n^3 since
-n is simple enough.
+I will use contrapositive, because it is easier to work with n even than with n³ odd.
 
-P→Q≡¬Q→¬P
+Original claim:
+∀n ∈ ℤ, if n³ is odd, then n is odd.
 
-original claim: For all n ∈ ℤ: if n³ is odd, then n is odd.
-∀n ∈ ℤ, n³ is odd -> n is odd
+Contrapositive claim:
+∀n ∈ ℤ, if n is even, then n³ is even.
 
-Assumption: n³ is odd
-Goal: n is odd
+Assumption: n is even.
+Goal: n³ is even.
 
-Since the assumption n is simpler to work with than n³, I'll be working with the contrapositive
-i.e NOT n
+Since n is even, there exists k ∈ ℤ such that n = 2k. [definition of even]
 
-Restate contrapositive claim: For all n ∈ ℤ: if n is not odd, then n³ is not odd.
-I.O.W, For all n ∈ ℤ: if n is even, then n³ is even.
+Then
+n³ = (2k)³
+   = 8k³
+   = 2(4k³).
 
-∀n ∈ ℤ, ¬(n is odd) -> ¬(n³ is odd)
-    ≡ ∀n ∈ ℤ, n is even -> n³ is even
+Since integers are closed under multiplication, 4k³ ∈ ℤ.
+Therefore n³ has the form 2(integer), so n³ is even. [definition of even]
 
-
-Assumption: n is even
-Goal: n³ is even
-
-Defintion of n is even:
-∀n ∈ Z, ∃k ∈ Z, (n = 2k)
-
-**Justification and Proof**:
-n³ = (2k)³, where n=2k
-
-(2k)³ = 8k³ = 2*(4k³)
-4k³ ∈ Z (4k³ is closed under multiplication)
-
-since 2(Integer) is even, thus,
-n³ is even = True
-
-if n is even, then n³ is even, 
-These are both T
-
-
-∀n ∈ ℤ, n³ is odd -> n is odd
-    ≡ ∀n ∈ ℤ, ¬(n is odd) -> ¬(n³ is odd)
-    ≡ ∀n ∈ ℤ, n is even -> n³ is even
-
-**Conclusion**
-since `∀n ∈ ℤ, n is even -> n³ is even`
-has been proven true,
-then the claim - `∀n ∈ ℤ, n³ is odd -> n is odd` is also true
+Thus the contrapositive is true, and therefore the original claim is true.
 
 **(b)** There is no largest prime number.
 
