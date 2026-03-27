@@ -50,6 +50,9 @@ Claim: There is no largest prime number.
 Strategy: Contradiction.
 
 Assume, for contradiction, that there is a largest prime number.
+
+Goal: derive a contradiction from the assumption that there is a largest prime number.
+
 Then the set of all prime numbers is finite, so we can list it as
 
 {p1, p2, ..., pn}

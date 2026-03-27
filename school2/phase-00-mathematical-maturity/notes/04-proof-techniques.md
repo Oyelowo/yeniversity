@@ -201,6 +201,15 @@ A "contradiction" in practice is finding Q ∧ ¬Q for some statement Q, since:
 
 Q ∧ ¬Q is always False — it *is* ⊥. Deriving Q ∧ ¬Q completes the contradiction.
 
+In actual proofs, contradictions often appear in several equivalent forms:
+
+- deriving both Q and ¬Q
+- deriving an impossible arithmetic statement such as 1 = 0
+- deriving that a prime divides 1
+- violating an earlier assumption, e.g. assuming gcd(p, q) = 1 and later proving gcd(p, q) ≠ 1
+
+All of these count as contradictions because they amount to deriving ⊥ (False).
+
 **Structure:**
 ```
 [We want to prove P.]
