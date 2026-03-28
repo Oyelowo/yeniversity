@@ -533,6 +533,16 @@ and we may assume gcd(p, q) = 1. [lowest terms]
 Gist of the proof:
 we will show that both p and q must be divisible by 3, which contradicts gcd(p, q) = 1.
 
+Memory-jog summary:
+- assume √3 = p / q in lowest terms
+- derive 3 | p
+- derive 3 | q
+- so p and q have common factor 3
+- therefore gcd(p, q) ≠ 1
+- but lowest terms assumed gcd(p, q) = 1
+- contradiction
+- so the whole target is to force both numerator and denominator to be divisible by 3
+
 Square both sides:
 
 (p / q)² = 3
