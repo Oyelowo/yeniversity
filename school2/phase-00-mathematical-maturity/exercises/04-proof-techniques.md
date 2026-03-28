@@ -621,8 +621,51 @@ assert!(gcd(p, q) != 1); // contradiction
 *(i.e. there is no n ∈ ℤ such that n ≥ m for all m ∈ ℤ)*
 
 > **Proof:**  
-> Assume ___  
-> *(derive a contradiction)*
+Assume, for contradiction, that there is a largest integer.
+
+Then there exists n ∈ ℤ such that for every m ∈ ℤ,
+
+n ≥ m.
+
+Gist of the proof:
+we will construct another integer larger than n, which contradicts the assumption that n is the largest integer.
+
+Memory-jog summary:
+- assume n is the largest integer
+- construct n + 1
+- n + 1 is an integer
+- n + 1 > n
+- that contradicts the assumption that n is at least every integer
+- therefore there is no largest integer
+
+Now consider n + 1.
+
+Since n ∈ ℤ and 1 ∈ ℤ, we have n + 1 ∈ ℤ. [integers are closed under addition]
+
+Also,
+
+n + 1 > n. [basic arithmetic]
+
+But if n were the largest integer, then n would have to satisfy
+
+n ≥ n + 1,
+
+because n + 1 is an integer.
+
+This contradicts n + 1 > n.
+
+Therefore there is no largest integer. □
+
+Rust-style pseudocode:
+
+```rust
+assume_largest_integer(n);
+
+let bigger = n + 1;
+assert!(is_integer(bigger));
+assert!(bigger > n);
+assert!(n >= bigger); // contradiction with "n is the largest integer"
+```
 
 ---
 
