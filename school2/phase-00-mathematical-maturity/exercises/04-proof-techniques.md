@@ -667,6 +667,13 @@ assert!(bigger > n);
 assert!(n >= bigger); // contradiction with "n is the largest integer"
 ```
 
+Why this proof is not written like the "largest prime" proof:
+
+- for primes, if you assume there is a largest prime p_n, then every prime lies in the finite range 2 to p_n, so a finite list makes sense
+- for integers, even if you assume there is a largest integer n, there are still infinitely many negative integers
+- so the integers do not become a finite set under that assumption
+- that is why the right contradiction move here is to construct n + 1, not to build a finite list
+
 ---
 
 ## E5 — Proof by cases

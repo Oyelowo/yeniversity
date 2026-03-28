@@ -258,6 +258,36 @@ By Lemma L: p is even.
 
 Substitute p = 2m into p² = 2q²:  
 (2m)² = 2q²    [replace p with 2m]  
+
+### Finite-list vs. n+1 contradiction
+
+These two contradiction proofs look similar, but they use different engines.
+
+**Why Euclid's prime proof can use a finite list:**
+
+- primes live only inside the positive integers greater than 1
+- if you assume there is a largest prime p_n, then every prime lies between 2 and p_n
+- that traps all primes inside a finite range
+- so you can list them as {p_1, p_2, ..., p_n}
+
+**Why the largest-integer proof cannot use a finite list:**
+
+- even if you assume there is a largest integer n, the integers still include infinitely many negative numbers
+- so the set of all integers would still not be finite
+- therefore you should not switch to a finite-list proof shape there
+
+**So what do we do instead for integers?**
+
+- assume n is the largest integer
+- build n + 1
+- n + 1 is still an integer
+- but n + 1 > n
+- contradiction
+
+Memory rule:
+
+- largest prime -> bounded positive range -> finite list works
+- largest integer -> still infinitely many negatives -> use n + 1 instead
 4m²   = 2q²    [(2m)² = 4m²]  
 2m²   = q².    [divide both sides by 2]
 
