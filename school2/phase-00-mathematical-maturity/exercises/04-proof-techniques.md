@@ -194,14 +194,28 @@ x = p / q
 
 and we may assume gcd(p, q) = 1. [lowest terms]
 
+Gist of the proof:
+we will show that both p and q must be divisible by 2, which contradicts gcd(p, q) = 1.
+
 Substitute into x² = 2:
 
 (p / q)² = 2
 p² / q² = 2
 p² = 2q².
 
-So p² is even, hence p is even.
-Therefore there exists m ∈ ℤ such that p = 2m.
+Since q ∈ ℤ, we have q² ∈ ℤ. [integers are closed under multiplication]
+So p² = 2 · (integer).
+Therefore 2 | p². [definition of divisibility]
+
+Euclid's lemma: if a prime number r divides ab, then r | a or r | b.
+
+Here 2 is prime and p² = p · p.
+So from 2 | p², Euclid's lemma gives:
+
+2 | p or 2 | p.
+
+Hence 2 | p.
+Therefore there exists m ∈ ℤ such that p = 2m. [definition of divisibility]
 
 Substitute back:
 
@@ -209,7 +223,13 @@ Substitute back:
 4m² = 2q²
 2m² = q².
 
-So q² is even, hence q is even.
+Since m ∈ ℤ, we have m² ∈ ℤ. [integers are closed under multiplication]
+So q² = 2 · (integer).
+Therefore 2 | q². [definition of divisibility]
+
+Again, q² = q · q and 2 is prime.
+So by Euclid's lemma, 2 | q or 2 | q.
+Hence 2 | q.
 
 Thus both p and q are even, so 2 divides both p and q.
 Therefore gcd(p, q) ≠ 1.
@@ -243,7 +263,7 @@ Then the same algebra as above gives:
 
 p² = 2q²,
 
-so p is even, and then q is even.
+so the same argument as above shows that 2 | p and 2 | q.
 Thus gcd(p, q) ≠ 1, contradicting gcd(p, q) = 1.
 
 So x² ≠ 2.
