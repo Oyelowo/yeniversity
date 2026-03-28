@@ -691,10 +691,76 @@ Why this proof is not written like the "largest prime" proof:
 *(You may use: a ≡ r (mod 3) means a = 3k + r for some k ∈ ℤ)*
 
 > **Case 1 (n ≡ 0 mod 3):**  
-a = 
+Gist of the proof:
+every integer is in exactly one of the forms 3k, 3k + 1, or 3k + 2, so we check n³ - n in each case and show it always has the form 3(integer).
+
+Memory-jog summary:
+- split into the three mod 3 cases
+- write n as 3k, 3k + 1, or 3k + 2
+- expand n³ - n in each case
+- factor out 3
+- conclude 3 | (n³ - n)
+
+> **Case 1 (n ≡ 0 mod 3):**  
+Then there exists k ∈ ℤ such that n = 3k.
+
+So
+
+n³ - n = (3k)³ - 3k
+       = 27k³ - 3k
+       = 3(9k³ - k).
+
+Since integers are closed under multiplication and subtraction, 9k³ - k ∈ ℤ.
+Therefore n³ - n has the form 3(integer), so 3 | (n³ - n).
 > **Case 2 (n ≡ 1 mod 3):**  
+Then there exists k ∈ ℤ such that n = 3k + 1.
+
+So
+
+n³ - n = (3k + 1)³ - (3k + 1)
+       = (27k³ + 27k² + 9k + 1) - (3k + 1)
+       = 27k³ + 27k² + 6k
+       = 3(9k³ + 9k² + 2k).
+
+Since integers are closed under multiplication and addition, 9k³ + 9k² + 2k ∈ ℤ.
+Therefore n³ - n has the form 3(integer), so 3 | (n³ - n).
 > **Case 3 (n ≡ 2 mod 3):**  
+Then there exists k ∈ ℤ such that n = 3k + 2.
+
+So
+
+n³ - n = (3k + 2)³ - (3k + 2)
+       = (27k³ + 54k² + 36k + 8) - (3k + 2)
+       = 27k³ + 54k² + 33k + 6
+       = 3(9k³ + 18k² + 11k + 2).
+
+Since integers are closed under multiplication and addition, 9k³ + 18k² + 11k + 2 ∈ ℤ.
+Therefore n³ - n has the form 3(integer), so 3 | (n³ - n).
 > **Conclusion:**
+Every integer n is in exactly one of the three cases above.
+In each case, 3 | (n³ - n).
+Therefore, for all n ∈ ℤ, n³ - n is divisible by 3. □
+
+Rust-style pseudocode:
+
+```rust
+fn cube_minus_n_divisible_by_3(n: i64) -> bool {
+    match n.rem_euclid(3) {
+        0 => {
+            let k = n / 3;
+            n * n * n - n == 3 * (9 * k * k * k - k)
+        }
+        1 => {
+            let k = (n - 1) / 3;
+            n * n * n - n == 3 * (9 * k * k * k + 9 * k * k + 2 * k)
+        }
+        _ => {
+            let k = (n - 2) / 3;
+            n * n * n - n == 3 * (9 * k * k * k + 18 * k * k + 11 * k + 2)
+        }
+    }
+}
+```
 
 **(b)** **Claim:** For all n ∈ ℤ: n² is either ≡ 0 (mod 4) or ≡ 1 (mod 4).  
 *(Hint: split into even n and odd n.)*
