@@ -499,7 +499,11 @@ Memory jog:
 - a(1) = 3
 - a(n) = a(n−1) + 2·a(n−2) for n ≥ 2
 
-Prove by **strong** induction that a(n) = 2ⁿ⁺¹ − (−1)ⁿ for all n ≥ 0.
+Prove by **strong** induction that
+
+$$a(n) = \frac{2^{n+2} - (-1)^n}{3}$$
+
+for all n ≥ 0.
 
 > **Proof strategy:** Strong induction
 >
@@ -530,31 +534,6 @@ Base case 2 (n = 1):
 From the definition,
 
 $$a(1) = 3.$$
-
-The claimed formula gives
-
-$$2^{1+1} - (-1)^1 = 2^2 - (-1) = 4 + 1 = 5.$$
-
-This does **not** match a(1) = 3.
-
-So as written, the claimed closed form is false.
-
-In fact, the correct formula is
-
-$$a(n) = \frac{2^{n+2} - (-1)^n}{3}.$$
-
-Check it quickly:
-
-- n = 0 gives $\frac{4 - 1}{3} = 1$,
-- n = 1 gives $\frac{8 - (-1)}{3} = 3$.
-
-So the exercise statement has a typo.
-
-> **Corrected claim:** for all n ≥ 0,
->
-> $$a(n) = \frac{2^{n+2} - (-1)^n}{3}.$$
-
-We now prove the corrected claim by strong induction.
 
 Let
 
