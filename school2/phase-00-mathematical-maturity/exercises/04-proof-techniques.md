@@ -503,21 +503,55 @@ fn even_factor_implies_even_product(a: i64, b: i64) -> bool {
 
 > **Proof strategy:** Contradiction  
 > **Proof:**  
-> Assume √3 ∈ ℚ. Then √3 = p/q where q!=0, gcd(p,q)=1  
-> *(follow the same structure as the √2 proof in the notes)*
-(√3)^3 = (p/q)^3
-3=p^3/q^3
-3q^3=p^3
+Assume, for contradiction, that √3 ∈ ℚ.
+Then there exist integers p, q with q ≠ 0 such that
 
-n=2k
-3q^3=3(2k)^3=3(8k^3)
+√3 = p / q
 
-p^3=(2k)^3=8k^3
+and we may assume gcd(p, q) = 1. [lowest terms]
 
-8k^3/3(8k^3)=1/3 in lowest term, q!=0, gcd(p,q)=1
+Square both sides:
 
-<!-- 3(8k^3) = 8k^3 -->
-<!-- =3k^3/j^3 -->
+(p / q)² = 3
+p² / q² = 3
+p² = 3q².
+
+So 3 divides p².
+We use the fact: if 3 divides p², then 3 divides p.
+Therefore there exists m ∈ ℤ such that p = 3m.
+
+Substitute back:
+
+(3m)² = 3q²
+9m² = 3q²
+3m² = q².
+
+So 3 divides q², and therefore 3 divides q.
+
+Thus 3 divides both p and q, so p and q have common factor 3.
+Therefore gcd(p, q) ≠ 1.
+
+But we assumed gcd(p, q) = 1.
+Contradiction.
+
+Therefore √3 ∉ ℚ. □
+
+Rust-style pseudocode:
+
+```rust
+assume_rational(sqrt_3); // sqrt_3 = p / q, gcd(p, q) = 1
+
+let (p, q) = reduced_fraction_for_sqrt_3();
+assert_eq!(p * p, 3 * q * q);
+
+assert!(divides(3, p * p));
+assert!(divides(3, p));
+
+assert!(divides(3, q * q));
+assert!(divides(3, q));
+
+assert!(gcd(p, q) != 1); // contradiction
+```
 
 
 
