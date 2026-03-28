@@ -318,25 +318,37 @@ fn even_plus_even_is_even(m: i64, n: i64) -> bool {
 
 > **Proof strategy:** Direct  
 > **Proof:**  
-> Assume ___ m is odd, n is odd
-> Step 1:  
-Defintion of odd:
-For all n, there exists k, where n=2k+1
+Assume m is odd and n is odd.
 
-m=2a+1
-n=2b+1
-mn=(2a+1)*(2b+1)
-=4ab+2a+2b+1
-=2(2ab+a+b)+1
+Since m is odd, there exists a ∈ ℤ such that m = 2a + 1. [definition of odd]
+Since n is odd, there exists b ∈ ℤ such that n = 2b + 1. [definition of odd]
 
-> Step 2:  
-2ab+a+b, closed under multiplication, addition
-t=2ab+a+b
-2t+1
+Then
 
-True
+mn = (2a + 1)(2b + 1)
+   = 4ab + 2a + 2b + 1
+   = 2(2ab + a + b) + 1.
 
-> Therefore ___ □ mn is odd
+Since integers are closed under multiplication and addition, 2ab + a + b ∈ ℤ.
+Therefore mn has the form 2(integer) + 1, so mn is odd. □
+
+Rust-style pseudocode:
+
+```rust
+fn is_odd(n: i64) -> bool {
+    n % 2 != 0
+}
+
+fn odd_times_odd_is_odd(m: i64, n: i64) -> bool {
+    if is_odd(m) && is_odd(n) {
+        let a = (m - 1) / 2;
+        let b = (n - 1) / 2;
+        m * n == 2 * (2 * a * b + a + b) + 1
+    } else {
+        true
+    }
+}
+```
 
 **(c)** **Claim:** For all m ∈ ℤ: if m is even, then m² is divisible by 4.
 
