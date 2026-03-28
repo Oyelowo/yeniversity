@@ -774,8 +774,67 @@ fn cube_minus_n_divisible_by_3(n: i64) -> bool {
 *(Hint: split into even n and odd n.)*
 
 > **Case 1 (n even):**  
+Quick meaning of the notation:
+
+- n² ≡ 0 (mod 4) means n² leaves remainder 0 when divided by 4
+- n² ≡ 1 (mod 4) means n² leaves remainder 1 when divided by 4
+- equivalently, 4 | n² or n² = 4k + 1 for some k ∈ ℤ
+
+Gist of the proof:
+every integer is either even or odd, so we check n² in those two cases and show the only possible remainders mod 4 are 0 and 1.
+
+Memory-jog summary:
+- split into even and odd cases
+- if n = 2k, then n² = 4k²
+- if n = 2k + 1, then n² = 4k² + 4k + 1 = 4(integer) + 1
+- therefore n² is congruent to 0 or 1 mod 4
+
+> **Case 1 (n even):**  
+Then there exists k ∈ ℤ such that n = 2k.
+
+So
+
+n² = (2k)²
+   = 4k².
+
+Since k² ∈ ℤ, n² has the form 4(integer).
+Therefore n² ≡ 0 (mod 4).
+
 > **Case 2 (n odd):**  
+Then there exists k ∈ ℤ such that n = 2k + 1.
+
+So
+
+n² = (2k + 1)²
+   = 4k² + 4k + 1
+   = 4(k² + k) + 1.
+
+Since integers are closed under addition and multiplication, k² + k ∈ ℤ.
+Therefore n² has the form 4(integer) + 1.
+So n² ≡ 1 (mod 4).
+
 > **Conclusion:**
+Every integer n is either even or odd.
+If n is even, then n² ≡ 0 (mod 4).
+If n is odd, then n² ≡ 1 (mod 4).
+Therefore, for all n ∈ ℤ, n² is either ≡ 0 (mod 4) or ≡ 1 (mod 4). □
+
+Rust-style pseudocode:
+
+```rust
+fn square_mod_4_is_0_or_1(n: i64) -> bool {
+    match n.rem_euclid(2) {
+        0 => {
+            let k = n / 2;
+            n * n == 4 * (k * k)
+        }
+        _ => {
+            let k = (n - 1) / 2;
+            n * n == 4 * (k * k + k) + 1
+        }
+    }
+}
+```
 
 ---
 
