@@ -194,9 +194,20 @@ x = p / q
 
 and we may assume gcd(p, q) = 1. [lowest terms]
 
+----
 Gist of the proof:
 we will show that both p and q must be divisible by 2, which contradicts gcd(p, q) = 1.
 
+Memory-jog summary:
+- assume x = p / q in lowest terms and x² = 2
+- derive 2 | p
+- derive 2 | q
+- so p and q have common factor 2
+- therefore gcd(p, q) ≠ 1
+- but lowest terms assumed gcd(p, q) = 1
+- contradiction
+- so the whole target is to force both numerator and denominator to be divisible by 2
+----
 Substitute into x² = 2:
 
 (p / q)² = 2
@@ -530,6 +541,7 @@ Then there exist integers p, q with q ≠ 0 such that
 
 and we may assume gcd(p, q) = 1. [lowest terms]
 
+----
 Gist of the proof:
 we will show that both p and q must be divisible by 3, which contradicts gcd(p, q) = 1.
 
@@ -542,6 +554,7 @@ Memory-jog summary:
 - but lowest terms assumed gcd(p, q) = 1
 - contradiction
 - so the whole target is to force both numerator and denominator to be divisible by 3
+----
 
 Square both sides:
 
