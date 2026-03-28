@@ -530,6 +530,9 @@ Then there exist integers p, q with q ≠ 0 such that
 
 and we may assume gcd(p, q) = 1. [lowest terms]
 
+Gist of the proof:
+we will show that both p and q must be divisible by 3, which contradicts gcd(p, q) = 1.
+
 Square both sides:
 
 (p / q)² = 3
