@@ -283,17 +283,36 @@ Write a complete direct proof for each. Label each step with a justification.
 
 > **Proof strategy:** Direct  
 > **Proof:**  
-> Assume m is even, n is even  
-> Step 1:  
-For all m, there exists k, where m = 2k
-m = 2k
-For all n, there exists j, where m = 2j
-n = 2j
+Assume m is even and n is even.
 
-> Step 2:  
-m+n=2k+2j=2(k+j) closed under addition
-2(integer)
-> Therefore m+n is even □
+Since m is even, there exists k ∈ ℤ such that m = 2k. [definition of even]
+Since n is even, there exists j ∈ ℤ such that n = 2j. [definition of even]
+
+Then
+
+m + n = 2k + 2j
+      = 2(k + j).
+
+Since integers are closed under addition, k + j ∈ ℤ.
+Therefore m + n has the form 2(integer), so m + n is even. □
+
+Rust-style pseudocode:
+
+```rust
+fn is_even(n: i64) -> bool {
+    n % 2 == 0
+}
+
+fn even_plus_even_is_even(m: i64, n: i64) -> bool {
+    if is_even(m) && is_even(n) {
+        let k = m / 2;
+        let j = n / 2;
+        m + n == 2 * (k + j)
+    } else {
+        true
+    }
+}
+```
 
 **(b)** **Claim:** For all m, n ∈ ℤ: if m is odd and n is odd, then mn is odd.
 
