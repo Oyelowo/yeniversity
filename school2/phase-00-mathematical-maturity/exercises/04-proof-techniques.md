@@ -354,14 +354,35 @@ fn odd_times_odd_is_odd(m: i64, n: i64) -> bool {
 
 > **Proof strategy:** Direct  
 > **Proof:**
-Assumption: m is even, m=2k
-Goal: m² is divisible by 4, 4|m²
+Assume m is even.
 
-m²/4=(2k)²/4 = 4k²/4 = k²
-k², closed under multiplication
-For all k ∈ ℤ, k² is an integer
+Then there exists k ∈ ℤ such that m = 2k. [definition of even]
 
-True
+So
+
+m² = (2k)²
+   = 4k²
+   = 4(k²).
+
+Since integers are closed under multiplication, k² ∈ ℤ.
+Therefore m² has the form 4(integer), so 4 divides m². □
+
+Rust-style pseudocode:
+
+```rust
+fn is_even(n: i64) -> bool {
+    n % 2 == 0
+}
+
+fn even_square_divisible_by_4(m: i64) -> bool {
+    if is_even(m) {
+        let k = m / 2;
+        m * m == 4 * (k * k)
+    } else {
+        true
+    }
+}
+```
 
 ---
 
