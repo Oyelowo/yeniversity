@@ -951,6 +951,84 @@ fn exactly_one_odd_if_sum_is_odd(a: i64, b: i64) -> bool {
 **(b)** **Claim:** log₂ 3 is irrational.  
 *(Recall: log₂ 3 = x means 2^x = 3.)*
 
+> **Proof strategy:** Contradiction
+>
+> **Why this strategy:**
+> if we assume log₂ 3 is rational, we can write it as p / q and convert 2^(p/q) = 3 into 2^p = 3^q, which forces the same number to be both even and odd.
+>
+> **Proof:**
+Let
+
+P = "log₂ 3 is irrational"
+
+To use contradiction, negate the claim:
+
+¬P = "log₂ 3 is rational"
+
+Assume, for contradiction, that log₂ 3 is rational.
+
+Then there exist integers p, q with q ≠ 0 such that
+
+log₂ 3 = p / q.
+
+We may assume p / q is in lowest terms and q > 0.
+
+Since log₂ 3 = x means 2^x = 3, we get
+
+2^(p/q) = 3.
+
+Raise both sides to the q-th power:
+
+(2^(p/q))^q = 3^q
+2^p = 3^q.
+
+Goal: show that this forces 2^p to be even and 3^q to be odd, contradicting 2^p = 3^q.
+
+Gist of the proof:
+assuming log₂ 3 is rational lets us rewrite the equation as 2^p = 3^q, but the left side is even and the right side is odd, which is impossible.
+
+Memory-jog summary:
+- assume log₂ 3 = p / q
+- convert to 2^(p/q) = 3
+- raise both sides to q to get 2^p = 3^q
+- 2^p is even
+- 3^q is odd
+- impossible for an even number to equal an odd number
+- contradiction
+- therefore log₂ 3 is irrational
+
+Also, log₂ 3 > 0 because 2^0 = 1 < 3.
+Since q > 0 and p / q = log₂ 3 > 0, we have p > 0.
+
+Therefore p ≥ 1, so 2^p is even.
+
+Also, 3 is odd, and any positive power of an odd integer is odd.
+So 3^q is odd.
+
+But 2^p = 3^q.
+So the same integer would have to be both even and odd.
+Contradiction.
+
+Therefore log₂ 3 is irrational. □
+
+Rust-style pseudocode:
+
+```rust
+fn log2_3_is_not_rational_in_small_search(bound: i32) -> bool {
+    for p in -bound..=bound {
+        for q in 1..=bound {
+            if gcd_i32(p, q) == 1 {
+                let lhs = (p as f64) / (q as f64);
+                if (2f64.powf(lhs) - 3.0).abs() < 1e-12 {
+                    return false;
+                }
+            }
+        }
+    }
+    true
+}
+```
+
 ---
 
 ## Rust Challenge
