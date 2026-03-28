@@ -516,9 +516,19 @@ Square both sides:
 p² / q² = 3
 p² = 3q².
 
-So 3 divides p².
-We use the fact: if 3 divides p², then 3 divides p.
-Therefore there exists m ∈ ℤ such that p = 3m.
+Since q ∈ ℤ, we have q² ∈ ℤ. [integers are closed under multiplication]
+So p² = 3 · (integer).
+Therefore 3 | p². [definition of divisibility]
+
+Euclid's lemma: if a prime number r divides ab, then r | a or r | b.
+
+Here 3 is prime and p² = p · p.
+So from 3 | p², Euclid's lemma gives:
+
+3 | p or 3 | p.
+
+Hence 3 | p.
+Therefore there exists m ∈ ℤ such that p = 3m. [definition of divisibility]
 
 Substitute back:
 
@@ -526,7 +536,13 @@ Substitute back:
 9m² = 3q²
 3m² = q².
 
-So 3 divides q², and therefore 3 divides q.
+Since m ∈ ℤ, we have m² ∈ ℤ. [integers are closed under multiplication]
+So q² = 3 · (integer).
+Therefore 3 | q². [definition of divisibility]
+
+Again, q² = q · q and 3 is prime.
+So by Euclid's lemma, 3 | q or 3 | q.
+Hence 3 | q.
 
 Thus 3 divides both p and q, so p and q have common factor 3.
 Therefore gcd(p, q) ≠ 1.
