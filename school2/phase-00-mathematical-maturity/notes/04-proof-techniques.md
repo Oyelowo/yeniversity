@@ -37,6 +37,37 @@ follows from the Division Algorithm.
 Every rational can be written in *lowest terms*: reduce by gcd(p,q). This uses Euclidean
 division, which guarantees gcd(p,q) exists for any integers p,q (not both 0).
 
+### NB — How do you know which cases to split into?
+
+Case splits are not random. You usually choose the split that:
+
+- covers every integer
+- matches the structure named in the claim
+- makes the algebra easiest
+
+Examples:
+
+- if the claim involves even, odd, or divisibility by 2, try the parity split: n = 2k or n = 2k + 1
+- if the claim involves mod 3, try the 3 possible remainder forms: n = 3k, 3k + 1, or 3k + 2
+- more generally, for mod m, try the m possible remainder forms:
+  n = mk, mk + 1, ..., mk + (m - 1)
+
+These are called the residue classes mod m.
+
+Plain meaning:
+
+- "residue classes mod 3" just means "the possible remainders when dividing by 3"
+- those remainders are 0, 1, 2
+- so every integer is in exactly one of these 3 classes:
+  - n ≡ 0 (mod 3)
+  - n ≡ 1 (mod 3)
+  - n ≡ 2 (mod 3)
+
+Memory rule:
+
+- choose cases from the modulus or structure that appears in the problem
+- use the forms that make substitution and factoring easiest
+
 ---
 
 ## 1. What exactly is a proof?

@@ -686,6 +686,16 @@ Why this proof is not written like the "largest prime" proof:
 
 ## E5 — Proof by cases
 
+NB — How to choose the cases:
+
+- case splits are not random
+- choose cases that cover all integers and match the structure in the claim
+- if the claim mentions even/odd or divisibility by 2, try n = 2k or n = 2k + 1
+- if the claim mentions mod 3, try n = 3k, 3k + 1, or 3k + 2
+- more generally, "the m residue classes" means the m possible remainders mod m:
+    n = mk, mk + 1, ..., mk + (m - 1)
+- plain meaning: residue classes mod m = possible remainders when dividing by m
+
 **(a)** **Claim:** For all n ∈ ℤ: n³ − n is divisible by 3.  
 *(Hint: every integer is congruent to 0, 1, or 2 mod 3 — that's your three cases.)*  
 *(You may use: a ≡ r (mod 3) means a = 3k + r for some k ∈ ℤ)*
