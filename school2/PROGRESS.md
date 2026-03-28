@@ -25,7 +25,7 @@
 | 3 | Quantifiers — ∀ and ∃, negation of quantified statements | ✅ |
 | 4 | Proof Techniques — direct, contrapositive, contradiction | ⏳ |
 | 5 | Mathematical Induction — weak and strong form | ⏳ |
-| 6 | Set Theory — sets, subsets, power sets, operations | ❌ |
+| 6 | Set Theory — sets, subsets, power sets, operations | ⏳ |
 | 7 | Relations — equivalence relations, partial orders | ❌ |
 | 8 | Functions — injection, surjection, bijection, composition | ❌ |
 | 9 | Cardinality — countable vs uncountable, Cantor's diagonal argument | ❌ |
