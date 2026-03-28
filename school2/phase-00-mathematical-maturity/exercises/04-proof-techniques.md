@@ -161,31 +161,88 @@ fn square_minus_self_is_even(n: i64) -> bool {
 **(d)** For all x ∈ ℝ: if x² = 2, then x ∉ ℚ.
 
 > Your answer:
-Claim: For all x ∈ ℝ: if x² = 2, then x ∉ ℚ
-Assumption: x² = 2
-Goal: x ∉ ℚ
+Claim: For all x ∈ ℝ, if x² = 2, then x ∉ ℚ.
 
-P->Q, where P = x² = 2, Q=x ∉ ℚ
-= ¬Q→¬P  
-= ¬(x ∉ ℚ) -> ¬(x² = 2)
-= (x ∈ ℚ) -> ¬(x² = 2)
+Proof strategy: Contradiction.
 
-x=p/q, (q!=0, lowest term and gcd(p,q)=1)
-x ∈ ℝ 
-algebra: √2 is a real number that is irrational
+Assumption: x² = 2 and x ∈ ℚ. [this is the negation of the whole implication]
+Goal: derive a contradiction.
 
-√2 = p/q
-2=p²/q²
-2q²=p²
-from earlier:
-2q² is even
-p² is even
-gcd(p,q)!=1 because 2>1
-i.e 2|gcd(p,q)
+Since x ∈ ℚ, there exist integers p, q with q ≠ 0 such that
 
-(x ∈ ℚ) = false
-Premise is false
-thus, claim is false
+x = p / q
+
+and we may assume gcd(p, q) = 1. [lowest terms]
+
+Substitute into x² = 2:
+
+(p / q)² = 2
+p² / q² = 2
+p² = 2q².
+
+So p² is even, hence p is even.
+Therefore there exists m ∈ ℤ such that p = 2m.
+
+Substitute back:
+
+(2m)² = 2q²
+4m² = 2q²
+2m² = q².
+
+So q² is even, hence q is even.
+
+Thus both p and q are even, so 2 divides both p and q.
+Therefore gcd(p, q) ≠ 1.
+
+But we assumed gcd(p, q) = 1.
+Contradiction.
+
+Therefore x ∉ ℚ. □
+
+Alternate proof strategy: Contrapositive.
+
+Contrapositive claim:
+If x ∈ ℚ, then x² ≠ 2.
+
+Assumption: x ∈ ℚ.
+Goal: show x² ≠ 2.
+
+Since x ∈ ℚ, write x = p / q with p, q ∈ ℤ, q ≠ 0, and gcd(p, q) = 1.
+
+Assume, for contradiction, that x² = 2.
+Then the same algebra as above gives:
+
+p² = 2q²,
+
+so p is even, and then q is even.
+Thus gcd(p, q) ≠ 1, contradicting gcd(p, q) = 1.
+
+So x² ≠ 2.
+Hence, if x ∈ ℚ, then x² ≠ 2.
+Therefore, by contrapositive, if x² = 2, then x ∉ ℚ. □
+
+Rust-style pseudocode:
+
+```rust
+// Contradiction version
+assume(x * x == 2.0);
+assume_rational(x); // x = p / q, gcd(p, q) = 1
+
+let (p, q) = reduced_fraction_for(x);
+assert_eq!(p * p, 2 * q * q);
+assert!(is_even(p));
+assert!(is_even(q));
+assert!(gcd(p, q) != 1); // contradiction
+
+// Contrapositive version
+assume_rational(x); // x = p / q, gcd(p, q) = 1
+assume(x * x == 2.0); // temporary contradiction sub-assumption
+let (p, q) = reduced_fraction_for(x);
+assert_eq!(p * p, 2 * q * q);
+assert!(is_even(p));
+assert!(is_even(q));
+assert!(gcd(p, q) != 1); // contradiction, so x*x != 2
+```
 
 ---
 
