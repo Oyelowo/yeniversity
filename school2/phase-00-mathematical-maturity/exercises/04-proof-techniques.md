@@ -949,12 +949,12 @@ fn exactly_one_odd_if_sum_is_odd(a: i64, b: i64) -> bool {
 ```
 
 **(b)** **Claim:** log₂ 3 is irrational.  
-*(Recall: log₂ 3 = x means 2^x = 3.)*
+*(Recall: log₂ 3 = x means 2ˣ = 3.)*
 
 > **Proof strategy:** Contradiction
 >
 > **Why this strategy:**
-> if we assume log₂ 3 is rational, we can write it as p / q and convert 2^(p/q) = 3 into 2^p = 3^q, which forces the same number to be both even and odd.
+> if we assume log₂ 3 is rational, we can write it as p / q and convert 2^(p/q) = 3 into 2^p = 3^q, which forces the same integer to be both even and odd.
 >
 > **Proof:**
 Let
@@ -997,13 +997,40 @@ Memory-jog summary:
 - contradiction
 - therefore log₂ 3 is irrational
 
-Also, log₂ 3 > 0 because 2^0 = 1 < 3.
-Since q > 0 and p / q = log₂ 3 > 0, we have p > 0.
+Why is log₂ 3 positive, and more specifically between 1 and 2?
+
+- 2¹ = 2 < 3
+- 2² = 4 > 3
+
+So the exponent that makes 2^x = 3 must lie between 1 and 2.
+Therefore
+
+1 < log₂ 3 < 2.
+
+In particular, log₂ 3 > 0.
+
+Since q > 0 and p / q = log₂ 3 > 0, we get p > 0.
 
 Therefore p ≥ 1, so 2^p is even.
 
+Why?
+
+Since p ≥ 1,
+
+2^p = 2 · 2^(p - 1).
+
+Also, 2^(p - 1) is an integer.
+So 2^p has the form 2 · (integer), hence 2^p is even.
+
 Also, 3 is odd, and any positive power of an odd integer is odd.
-So 3^q is odd.
+
+Why?
+
+- 3 is odd
+- odd · odd is odd
+- so multiplying 3 by itself q times stays odd
+
+Therefore 3^q is odd.
 
 But 2^p = 3^q.
 So the same integer would have to be both even and odd.
