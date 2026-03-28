@@ -854,6 +854,85 @@ Write a clean, complete proof. After finishing, explain in one sentence why you 
 
 **(a)** **Claim:** For all a, b ∈ ℤ: if a + b is odd, then exactly one of a, b is odd.
 
+> **Proof strategy:** Contradiction
+>
+> **Why this strategy:**
+> the negation of "exactly one of a, b is odd" is "both are even or both are odd," and in either case the sum is even, which directly clashes with the assumption that a + b is odd.
+>
+> **Proof:**
+Assume a + b is odd.
+
+We must show that exactly one of a, b is odd.
+
+Assume, for contradiction, that it is not the case that exactly one of a, b is odd.
+
+Then either:
+
+- a and b are both even, or
+- a and b are both odd.
+
+Gist of the proof:
+we assume the sum is odd, then show that if a and b had the same parity, their sum would be even; that contradiction forces them to have opposite parity, so exactly one is odd.
+
+Memory-jog summary:
+- assume a + b is odd
+- assume not exactly one is odd
+- then a and b have the same parity
+- if both even, sum is even
+- if both odd, sum is even
+- contradiction
+- so exactly one is odd
+
+Case 1: a and b are both even.
+
+Then there exist j, k ∈ ℤ such that
+
+a = 2j and b = 2k.
+
+So
+
+a + b = 2j + 2k
+      = 2(j + k).
+
+Since integers are closed under addition, j + k ∈ ℤ.
+Therefore a + b is even.
+
+But this contradicts the assumption that a + b is odd.
+
+Case 2: a and b are both odd.
+
+Then there exist j, k ∈ ℤ such that
+
+a = 2j + 1 and b = 2k + 1.
+
+So
+
+a + b = (2j + 1) + (2k + 1)
+      = 2j + 2k + 2
+      = 2(j + k + 1).
+
+Since integers are closed under addition, j + k + 1 ∈ ℤ.
+Therefore a + b is even.
+
+But this again contradicts the assumption that a + b is odd.
+
+Both possibilities lead to contradiction.
+Therefore our temporary assumption was false.
+Hence exactly one of a, b is odd. □
+
+Rust-style pseudocode:
+
+```rust
+fn exactly_one_odd_if_sum_is_odd(a: i64, b: i64) -> bool {
+    if (a + b).rem_euclid(2) == 1 {
+        let exactly_one_odd = (a.rem_euclid(2) == 1) ^ (b.rem_euclid(2) == 1);
+        exactly_one_odd
+    } else {
+        true
+    }
+}
+```
+
 **(b)** **Claim:** log₂ 3 is irrational.  
 *(Recall: log₂ 3 = x means 2^x = 3.)*
 
