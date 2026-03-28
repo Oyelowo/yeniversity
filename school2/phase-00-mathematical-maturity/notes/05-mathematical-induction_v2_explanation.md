@@ -111,6 +111,56 @@ is the Rust version of:
 sum_{i=1}^n (2i - 1)
 ```
 
+### NB — Summation is basically a for loop
+
+This:
+
+$$
+\sum_{i=1}^{n} i
+$$
+
+is mentally very close to:
+
+```rust
+let mut total = 0;
+for i in 1..=n {
+    total += i;
+}
+```
+
+So when you read a summation, think:
+
+- what is the loop variable?
+- where does it start?
+- where does it stop?
+- what expression gets added each time?
+
+Examples:
+
+$$
+\sum_{i=1}^{n} i
+$$
+
+means:
+
+$$
+1 + 2 + 3 + \cdots + n
+$$
+
+and
+
+$$
+\sum_{i=1}^{n} (2i-1)
+$$
+
+means:
+
+$$
+(2\cdot1-1) + (2\cdot2-1) + \cdots + (2\cdot n-1)
+$$
+
+So yes: summation is very much "math loop notation."
+
 ### `forall n >= 1`
 
 This means:
@@ -291,6 +341,92 @@ Use the IH:
 ```
 
 Same structure, different algebra.
+
+---
+
+## 6.5. One full induction proof read like a loop
+
+Claim:
+
+$$
+\sum_{i=1}^{n} 2i = n(n+1)
+\quad \text{for all } n \ge 1
+$$
+
+Let
+
+$$
+P(n): \sum_{i=1}^{n} 2i = n(n+1)
+$$
+
+### Base case
+
+At $n=1$:
+
+$$
+\sum_{i=1}^{1} 2i = 2\cdot1 = 2
+$$
+
+and
+
+$$
+1(1+1)=2
+$$
+
+So $P(1)$ is true.
+
+### Inductive hypothesis
+
+Assume $P(k)$ is true:
+
+$$
+\sum_{i=1}^{k} 2i = k(k+1)
+$$
+
+### Goal
+
+Show $P(k+1)$:
+
+$$
+\sum_{i=1}^{k+1} 2i = (k+1)(k+2)
+$$
+
+### Key line
+
+The $(k+1)$-sum is the old sum plus the new last term:
+
+$$
+\sum_{i=1}^{k+1} 2i
+=
+\sum_{i=1}^{k} 2i + 2(k+1)
+$$
+
+This is the exact math version of:
+
+```rust
+let new_total = old_total + 2 * (k + 1);
+```
+
+Now use the IH:
+
+$$
+= k(k+1) + 2(k+1)
+= (k+1)(k+2)
+$$
+
+So $P(k+1)$ is true.
+
+Therefore, by induction,
+
+$$
+\sum_{i=1}^{n} 2i = n(n+1)
+\quad \text{for all } n \ge 1
+$$
+
+Memory rule:
+
+- new sum = old sum + new last term
+- that is why induction fits sum formulas so naturally
 
 ---
 
