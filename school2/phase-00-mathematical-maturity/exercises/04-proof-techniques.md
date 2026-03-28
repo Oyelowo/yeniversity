@@ -879,7 +879,7 @@ So the contradiction assumption is:
 - it is not true that exactly one of a, b is odd.
 
 Assumption: a + b is odd and not(exactly one of a, b is odd).
-Goal: derive a contradiction.
+Goal: show that this forces a + b to be even, contradicting the assumption that a + b is odd.
 
 Then either:
 
