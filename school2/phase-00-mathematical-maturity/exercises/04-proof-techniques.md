@@ -10,7 +10,7 @@ Symbols
 ∀ For All
 ≡ Equal
 ∃ There Exists/Any
-∈ Membershipt/In
+∈ Membership/In
 ⊥ False
 ## E1 — Classify the proof strategy
 
@@ -117,10 +117,6 @@ Why the finite-list step is valid here:
 **(c)** For all n ∈ ℤ: n² − n is even.
 
 > Your answer:
-Claim: For all n ∈ ℤ: n² − n is even
-Assumption: n² − n is even for all integers n
-Goal: For both odd and even, n² − n is even
-
 Claim: For all n ∈ ℤ, n² − n is even.
 
 Strategy: Cases.
@@ -708,7 +704,6 @@ Quick meaning of the notation:
 - equivalently: n = 3k, n = 3k + 1, or n = 3k + 2 for some k ∈ ℤ
 - in code, this matches n.rem_euclid(3) == 0, 1, or 2
 
-> **Case 1 (n ≡ 0 mod 3):**  
 Gist of the proof:
 every integer is in exactly one of the forms 3k, 3k + 1, or 3k + 2, so we check n³ - n in each case and show it always has the form 3(integer).
 
@@ -783,7 +778,6 @@ fn cube_minus_n_divisible_by_3(n: i64) -> bool {
 **(b)** **Claim:** For all n ∈ ℤ: n² is either ≡ 0 (mod 4) or ≡ 1 (mod 4).  
 *(Hint: split into even n and odd n.)*
 
-> **Case 1 (n even):**  
 Quick meaning of the notation:
 
 - n² ≡ 0 (mod 4) means n² leaves remainder 0 when divided by 4
