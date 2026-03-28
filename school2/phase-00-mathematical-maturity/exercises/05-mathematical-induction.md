@@ -11,6 +11,75 @@
 
 $$\sum_{i=1}^{n} 2i = n(n+1)$$
 
+> **Proof strategy:** Weak induction
+>
+> **Why this strategy:**
+> the claim is indexed by n, and the (k+1)-case can be rewritten as the k-case plus one new term.
+>
+> **Proof:**
+Let
+
+$$P(n): \sum_{i=1}^{n} 2i = n(n+1).$$
+
+Base case (n = 1):
+
+Left side:
+
+$$\sum_{i=1}^{1} 2i = 2 \cdot 1 = 2$$
+
+Right side:
+
+$$1(1+1) = 2$$
+
+So P(1) is true.
+
+Inductive step:
+
+Assume P(k) is true for some arbitrary k ≥ 1.
+This is the inductive hypothesis:
+
+$$\sum_{i=1}^{k} 2i = k(k+1).$$
+
+Goal: show
+
+$$\sum_{i=1}^{k+1} 2i = (k+1)(k+2).$$
+
+Start from the left side of the (k+1)-case:
+
+$$\sum_{i=1}^{k+1} 2i = \sum_{i=1}^{k} 2i + 2(k+1).$$
+
+Use the IH:
+
+$$= k(k+1) + 2(k+1)$$
+
+Factor out (k+1):
+
+$$= (k+1)(k+2).$$
+
+This is exactly the right side of P(k+1).
+
+Therefore P(k+1) is true.
+
+By the principle of mathematical induction, for all n ≥ 1,
+
+$$\sum_{i=1}^{n} 2i = n(n+1). \quad \square$$
+
+Rust-style pseudocode:
+
+```rust
+fn sum_even_numbers_iter(n: u64) -> u64 {
+	let mut total = 0;
+	for i in 1..=n {
+		total += 2 * i;
+	}
+	total
+}
+
+fn sum_even_numbers_formula(n: u64) -> u64 {
+	n * (n + 1)
+}
+```
+
 **E2.** Prove by induction: for all n ≥ 1,
 
 $$\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$$

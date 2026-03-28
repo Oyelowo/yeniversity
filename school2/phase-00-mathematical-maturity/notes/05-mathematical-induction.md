@@ -128,6 +128,35 @@ So 4 | (5^(k+1) − 1). □
 
 **Key technique:** Rewrite the (k+1)-th expression in terms of the k-th expression so the IH fires.
 
+### NB — How did we find
+
+$$5^{k+1} - 1 = 5(5^k - 1) + 4?$$
+
+The inductive hypothesis talks about:
+
+$$5^k - 1$$
+
+So in the inductive step, we try to make that exact chunk appear.
+
+Start with:
+
+$$5^{k+1} - 1 = 5 \\cdot 5^k - 1$$
+
+Now deliberately add and subtract 5:
+
+$$5 \\cdot 5^k - 1 = 5 \\cdot 5^k - 5 + 4$$
+
+Then factor 5 from the first two terms:
+
+$$= 5(5^k - 1) + 4$$
+
+This is not magic or guessing. It is reverse-engineering the expression so that the IH appears.
+
+Memory rule:
+
+- look at what the IH gives you
+- rewrite the (k+1)-case until that exact expression appears inside it
+
 ---
 
 ## 7. Strong Induction
@@ -179,6 +208,43 @@ Consider k + 1.
   By strong IH, a has a prime divisor p. Since p | a and a | (k+1), p | (k+1). ✓
 
 By strong induction, every integer ≥ 2 has a prime divisor. □
+
+### NB — What exactly happened in the composite case?
+
+This is the key chain of reasoning:
+
+1. If $$k+1$$ is composite, then
+
+$$k+1 = ab$$
+
+for some integers $$a,b$$ with
+
+$$2 \\le a \\le k \\quad \\text{and} \\quad 2 \\le b \\le k$$
+
+2. Since $$a$$ is between 2 and $$k$$, the strong IH applies to $$a$$.
+
+So $$a$$ has a prime divisor. Call it $$p$$. Then:
+
+$$p \\mid a$$
+
+3. Also, because $$k+1 = ab$$, the factor $$a$$ divides $$k+1$$:
+
+$$a \\mid (k+1)$$
+
+4. Now use the transitivity of divisibility:
+
+if $$p \\mid a$$ and $$a \\mid n$$, then $$p \\mid n$$
+
+So from $$p \\mid a$$ and $$a \\mid (k+1)$$, we get:
+
+$$p \\mid (k+1)$$
+
+That is enough. We do **not** need to prove that both $$a$$ and $$b$$ are prime, or that $$p$$ divides both of them. One prime divisor of one factor is already a prime divisor of $$k+1$$.
+
+There are really only two possibilities:
+
+- if $$k+1$$ is prime, it divides itself
+- if $$k+1$$ is composite, one of its factors has a prime divisor, and that prime divisor also divides $$k+1$$
 
 ---
 
