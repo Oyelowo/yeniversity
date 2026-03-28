@@ -393,23 +393,43 @@ Write a complete proof by contrapositive. Clearly state what the contrapositive 
 **(a)** **Claim:** For all n ∈ ℤ: if n² is even, then n is even.
 
 > **State the contrapositive:**  
-P->Q=¬Q->¬P
-if not(n is even), then not(n² is even)
-= if n is odd, then n² is odd
+If n is odd, then n² is odd.
 
 > **Proof:**
+We prove the contrapositive.
 
-n=2k+1
-n²=(2k+1)²
-=(2k+1)*(2k+1)
-=4k²+2k+2k+1
-=4k²+4k+1
-=2(2k²+2k)+1
-= 2(t)+1, t=Integers, 2k²+2k closed under multiplication, addition
+Assume n is odd.
+Then there exists k ∈ ℤ such that n = 2k + 1. [definition of odd]
 
-2t+1 is odd
+So
 
-True
+n² = (2k + 1)²
+   = (2k + 1)(2k + 1)
+   = 4k² + 4k + 1
+   = 2(2k² + 2k) + 1.
+
+Since integers are closed under multiplication and addition, 2k² + 2k ∈ ℤ.
+Therefore n² has the form 2(integer) + 1, so n² is odd.
+
+Thus the contrapositive is true.
+Therefore, if n² is even, then n is even. □
+
+Rust-style pseudocode:
+
+```rust
+fn is_odd(n: i64) -> bool {
+    n % 2 != 0
+}
+
+fn odd_implies_odd_square(n: i64) -> bool {
+    if is_odd(n) {
+        let k = (n - 1) / 2;
+        n * n == 2 * (2 * k * k + 2 * k) + 1
+    } else {
+        true
+    }
+}
+```
 
 **(b)** **Claim:** For all a, b ∈ ℤ: if a × b is odd, then both a and b are odd.  
 *(Hint: the contrapositive uses "or — use De Morgan.)*
