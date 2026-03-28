@@ -49,6 +49,11 @@ Claim: There is no largest prime number.
 
 Strategy: Contradiction.
 
+To use contradiction, negate the claim:
+
+Original claim P: "There is no largest prime number."
+Negation ¬P: "There is a largest prime number."
+
 Assume, for contradiction, that there is a largest prime number.
 
 Goal: derive a contradiction from the assumption that there is a largest prime number.
@@ -165,7 +170,22 @@ Claim: For all x ∈ ℝ, if x² = 2, then x ∉ ℚ.
 
 Proof strategy: Contradiction.
 
-Assumption: x² = 2 and x ∈ ℚ. [this is the negation of the whole implication]
+Let
+P = "x² = 2"
+Q = "x ∉ ℚ"
+
+Original claim: P -> Q
+
+To use contradiction, negate the whole implication:
+
+¬(P -> Q)
+= ¬(¬P ∨ Q)        [implication law]
+= P ∧ ¬Q           [De Morgan]
+
+So the contradiction assumption is:
+x² = 2 and x ∈ ℚ.
+
+Assumption: x² = 2 and x ∈ ℚ.
 Goal: derive a contradiction.
 
 Since x ∈ ℚ, there exist integers p, q with q ≠ 0 such that
@@ -203,6 +223,15 @@ Alternate proof strategy: Contrapositive.
 
 Contrapositive claim:
 If x ∈ ℚ, then x² ≠ 2.
+
+This comes from
+
+P -> Q
+≡ ¬Q -> ¬P
+
+where
+¬Q = "x ∈ ℚ"
+¬P = "x² ≠ 2".
 
 Assumption: x ∈ ℚ.
 Goal: show x² ≠ 2.
