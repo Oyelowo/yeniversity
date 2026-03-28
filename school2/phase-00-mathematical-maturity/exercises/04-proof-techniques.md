@@ -435,26 +435,66 @@ fn odd_implies_odd_square(n: i64) -> bool {
 *(Hint: the contrapositive uses "or — use De Morgan.)*
 
 > **State the contrapositive:**  
-P->Q=¬Q->¬P
-if not(both a and b are odd)
-then not(a x b) is odd
-<!-- =
-if both a and b are even
-then a x b is even -->
+If a is even or b is even, then ab is even.
 
 > **Proof:**
-¬(a ^ b) = ¬a v ¬b
-¬a=2k+1, ¬b=2j+1
+We prove the contrapositive.
 
-ab
-=(2k+1)*(2k+1)
-=4k²+2k+2k+1
-=4k²+4k+1
-=2(2k²+2k)+1
-=2(Integer)+1
-=2t+1, closed under multiplication+1
+Original claim:
+If ab is odd, then both a and b are odd.
 
-True
+Let
+P = "ab is odd"
+Q = "a and b are both odd"
+
+Then the contrapositive is
+¬Q -> ¬P.
+
+By De Morgan,
+¬Q = ¬(a and b both odd)
+   = (a is not odd) or (b is not odd)
+   = (a is even) or (b is even).
+
+So the contrapositive is:
+If a is even or b is even, then ab is even.
+
+Case 1: a is even.
+Then there exists k ∈ ℤ such that a = 2k. [definition of even]
+So
+
+ab = (2k)b = 2(kb).
+
+Since integers are closed under multiplication, kb ∈ ℤ.
+Therefore ab has the form 2(integer), so ab is even.
+
+Case 2: b is even.
+Then there exists j ∈ ℤ such that b = 2j. [definition of even]
+So
+
+ab = a(2j) = 2(aj).
+
+Since integers are closed under multiplication, aj ∈ ℤ.
+Therefore ab has the form 2(integer), so ab is even.
+
+In either case, if a is even or b is even, then ab is even.
+Thus the contrapositive is true.
+Therefore, if ab is odd, then both a and b are odd. □
+
+Rust-style pseudocode:
+
+```rust
+fn is_even(n: i64) -> bool {
+    n % 2 == 0
+}
+
+fn even_factor_implies_even_product(a: i64, b: i64) -> bool {
+    if is_even(a) || is_even(b) {
+        (a * b) % 2 == 0
+    } else {
+        true
+    }
+}
+```
 ---
 
 ## E4 — Proof by contradiction
