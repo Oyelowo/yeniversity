@@ -1038,6 +1038,15 @@ Contradiction.
 
 Therefore log₂ 3 is irrational. □
 
+What each fact is used for:
+
+- 1 < log₂ 3 < 2: this does not prove irrationality; it only tells us log₂ 3 is positive
+- q > 0: this is just a clean way to choose the rational form p / q
+- p > 0: follows from p / q = log₂ 3 > 0 and q > 0
+- p > 0 matters because it lets us say p ≥ 1, so 2^p is even
+- the real contradiction is not about gcd(p, q)
+- the real contradiction is that 2^p is even while 3^q is odd, so they cannot be equal
+
 Rust-style pseudocode:
 
 ```rust
