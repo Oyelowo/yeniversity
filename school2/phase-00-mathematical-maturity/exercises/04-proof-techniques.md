@@ -690,6 +690,14 @@ Why this proof is not written like the "largest prime" proof:
 *(Hint: every integer is congruent to 0, 1, or 2 mod 3 — that's your three cases.)*  
 *(You may use: a ≡ r (mod 3) means a = 3k + r for some k ∈ ℤ)*
 
+Quick meaning of the notation:
+
+- n ≡ 0 (mod 3) means remainder 0 when dividing by 3
+- n ≡ 1 (mod 3) means remainder 1 when dividing by 3
+- n ≡ 2 (mod 3) means remainder 2 when dividing by 3
+- equivalently: n = 3k, n = 3k + 1, or n = 3k + 2 for some k ∈ ℤ
+- in code, this matches n.rem_euclid(3) == 0, 1, or 2
+
 > **Case 1 (n ≡ 0 mod 3):**  
 Gist of the proof:
 every integer is in exactly one of the forms 3k, 3k + 1, or 3k + 2, so we check n³ - n in each case and show it always has the form 3(integer).
