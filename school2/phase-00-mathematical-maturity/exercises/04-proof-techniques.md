@@ -860,11 +860,26 @@ Write a clean, complete proof. After finishing, explain in one sentence why you 
 > the negation of "exactly one of a, b is odd" is "both are even or both are odd," and in either case the sum is even, which directly clashes with the assumption that a + b is odd.
 >
 > **Proof:**
-Assume a + b is odd.
+Let
 
-We must show that exactly one of a, b is odd.
+P = "a + b is odd"
+Q = "exactly one of a, b is odd"
 
-Assume, for contradiction, that it is not the case that exactly one of a, b is odd.
+Original claim: P -> Q
+
+To use contradiction, negate the whole implication:
+
+¬(P -> Q)
+= ¬(¬P ∨ Q)        [implication law]
+= P ∧ ¬Q           [De Morgan]
+
+So the contradiction assumption is:
+
+- a + b is odd, and
+- it is not true that exactly one of a, b is odd.
+
+Assumption: a + b is odd and not(exactly one of a, b is odd).
+Goal: derive a contradiction.
 
 Then either:
 
