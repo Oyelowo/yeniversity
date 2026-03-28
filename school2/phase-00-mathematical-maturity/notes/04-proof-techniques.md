@@ -364,6 +364,37 @@ P→Q and ¬Q→¬P are the *same sentence* (identical truth values). Contradict
 because ¬P→⊥ *is* P. When you pick a strategy you're choosing which direction to approach
 the same wall.
 
+### Implications: which assumptions are legal?
+
+For a claim of the form
+
+$$
+P \to Q
+$$
+
+the proof method determines what you are allowed to assume:
+
+| Method | Legal assumption | Why |
+|--------|------------------|-----|
+| Direct | P | You are proving P → Q forward |
+| Contrapositive | ¬Q | Because P → Q ≡ ¬Q → ¬P |
+| Contradiction | P ∧ ¬Q | Because ¬(P → Q) ≡ P ∧ ¬Q |
+
+That last line is the key point many people miss. In a contradiction proof of an implication,
+you are **not** assuming the conclusion. You are assuming the **negation of the whole implication**:
+
+$$
+\neg(P \to Q)
+= \neg(\neg P \lor Q)
+= P \land \neg Q
+$$
+
+So contradiction on an implication legally gives you both pieces at once:
+- the hypothesis-side assumption P
+- the negation of the conclusion ¬Q
+
+This is why a contradiction proof of an implication is not circular reasoning.
+
 ---
 
 ## 7. Common Mistakes
