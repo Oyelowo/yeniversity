@@ -104,6 +104,14 @@ let q = prime_divisor(n); // valid because n > 1
 assert!(!primes.contains(&q)); // contradiction
 ```
 
+Why the finite-list step is valid here:
+
+- primes are positive integers greater than 1
+- if you assume there is a largest prime p_n, then every prime must lie between 2 and p_n
+- that puts all primes into a finite positive range
+- so listing them as {p1, p2, ..., pn} is valid here
+- this is different from the "largest integer" proof, because integers still include infinitely many negative numbers
+
 
 
 **(c)** For all n ∈ ℤ: n² − n is even.
