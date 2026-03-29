@@ -15,9 +15,9 @@
 
 **Worked answers:**
 
-1. Smallest counterexample or strong induction, because the statement is over integers and composite numbers reduce to smaller factors.
-2. Construction, because we can explicitly exhibit a witness such as $$\frac{3}{2}$$.
-3. Non-constructive existence proof by cases, because the standard argument proves existence without initially knowing which witness case holds.
+1. Smallest counterexample or strong induction, because if a number is composite then it breaks into smaller factors, so the proof naturally reduces the problem to smaller integers.
+2. Construction, because we can explicitly exhibit a witness such as $$\frac{3}{2}$$ and then directly verify it satisfies the claim.
+3. Non-constructive existence proof by cases, because the standard argument proves that one of two candidate choices must work without first identifying which one is the actual witness.
 
 ---
 
@@ -60,7 +60,7 @@ Therefore S is empty, so every integer $$n \ge 2$$ has a prime divisor. □
 
 **Worked answer:**
 
-It is the same idea because the smallest-counterexample assumption says all smaller cases already work, which is exactly the information strong induction uses.
+It is the same idea because once m is chosen as the smallest counterexample, every smaller case is automatically known to be correct, and that is exactly the information strong induction assumes.
 
 ---
 
@@ -103,7 +103,7 @@ So there exists a rational number strictly between 1 and 2. □
 
 **Worked answer:**
 
-It is non-constructive because the proof splits into cases and shows one of two candidate witnesses must work, but at the key step it does not first identify which case is actually true.
+It is non-constructive because the proof argues that one of two candidate pairs must work, but it does not initially tell us which pair is the genuine witness; it proves existence without directly constructing the final chosen example.
 
 ---
 
@@ -113,10 +113,10 @@ It is non-constructive because the proof splits into cases and shows one of two 
 
 **Worked answer:**
 
-Constructively, because a typing derivation is itself the witness, and in compiler work you usually want the derivation object or algorithm, not just a bare existence claim.
+Constructively, because a typing derivation is itself the witness, and in compiler work you usually want the derivation tree or the algorithm that builds it, not just a statement that some derivation exists in principle.
 
 **E8.** A query optimizer proof says: there exists an optimal plan equivalent to the input plan. What extra value do you get if the proof is constructive?
 
 **Worked answer:**
 
-You get an actual way to compute or exhibit the optimal plan, so the proof is closer to an implementation rather than a pure existence statement.
+You get an actual way to compute or exhibit the optimal plan, so the proof becomes much closer to an implementation: it tells you how to obtain the witness plan instead of merely asserting that one exists somewhere.

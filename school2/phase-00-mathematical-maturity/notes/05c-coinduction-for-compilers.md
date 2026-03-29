@@ -132,6 +132,31 @@ Coinduction is often the right tool because:
 - session type equivalence
 - behavioral typing of processes
 
+### A more concrete recursive-type picture
+
+Suppose you want to compare these two types:
+
+```text
+T = mu X. { head: Int, tail: X }
+U = { head: Int, tail: U }
+```
+
+If your type system treats recursive types equi-recursively, then T and U are intended to describe the same infinite unfolding.
+
+An ordinary inductive proof is awkward because unfolding never really finishes:
+
+```text
+T = { head: Int, tail: { head: Int, tail: { head: Int, tail: ... }}}
+```
+
+The coinductive move is to define a relation R containing (T, U) and show:
+
+1. both unfold to records with the same visible fields
+2. the `head` fields agree immediately
+3. the `tail` fields are again related by R
+
+That is exactly the bisimulation pattern.
+
 ---
 
 ## 6. Why This Matters for Query Optimization
@@ -157,6 +182,19 @@ If your optimizer represents search state with shared or cyclic structure, equiv
 Two plans may be considered equivalent if no query context can distinguish them by outputs, cost model, or semantics under the chosen observations.
 
 That style of same observable behavior is coinductive in flavor.
+
+### A query-optimizer-flavored picture
+
+Imagine two memoized plan states that each reference shared subplans and may even form cycles through equivalence classes.
+
+To show they are equivalent, you may not want to fully unroll the whole search graph.
+Instead, you define a relation R between plan states and show:
+
+1. corresponding nodes produce the same observable results
+2. corresponding children stay related
+3. cost or semantic annotations line up under the chosen notion of observation
+
+That is again a bisimulation-shaped argument: you prove stability under one-step observation rather than finite tree equality by full expansion.
 
 ---
 
