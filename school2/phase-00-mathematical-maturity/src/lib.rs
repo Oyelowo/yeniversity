@@ -7,4 +7,5 @@ pub mod induction;
 pub mod logic;
 pub mod proofs;
 pub mod quantifiers;
+pub mod relations;
 pub mod sets;
