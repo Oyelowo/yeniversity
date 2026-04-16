@@ -50,17 +50,14 @@
 *Not injective:* $$f(2) = f(-2) = 4$$ but $$2 \ne -2$$. ✗  
 *Not surjective:* $$-1$$ is negative; no integer squares to −1. ✗
 
-**(d) $$f(n) = n^3$$ — bijective.**
+**(d) $$f(n) = n^3$$ — injective, not surjective.**
 
-*Injective:* $$n_1^3 = n_2^3 \Rightarrow n_1 = n_2$$ (cube root is well-defined and monotone on ℤ). ✓  
-*Surjective:* Given $$m$$, the unique cube root $$\sqrt[3]{m}$$ is an integer only when $$m$$ is a perfect cube.
+*Injective:* If $$n_1^3 = n_2^3$$, then $$n_1 = n_2$$ because cubing is strictly increasing on $$\mathbb{Z}$$. ✓
 
-Wait — this is wrong. On $$\mathbb{Z}$$, $$f(n) = n^3$$ is injective (cubing is strictly increasing), but it is **not** surjective: 2 is not a perfect cube, so $$n^3 = 2$$ has no integer solution.
+*Not surjective:* 2 is not a perfect cube, so there is no integer $$n$$ with $$n^3 = 2$$. ✗
 
-Corrected:
-
-- Injective ✓ (strictly monotone)
-- Surjective ✗ (2 has no integer cube root)
+**Common trap:** on $$\mathbb{R}$$, the function $$x \mapsto x^3$$ is bijective. On $$\mathbb{Z}$$,
+it is not surjective because most integers are not cubes.
 
 ---
 
@@ -160,6 +157,37 @@ Then $$g(f(a_1)) = g(f(a_2))$$, i.e., $$(g \circ f)(a_1) = (g \circ f)(a_2)$$.
 Since $$g \circ f$$ is injective, $$a_1 = a_2$$. ∎
 
 *Note:* This shows injectivity passes backwards through composition (to f), and surjectivity passes backwards to g. These are dual statements.
+
+**Do not over-generalise:**
+
+- $$(g \circ f)$$ injective does **not** force $$g$$ to be injective.
+- $$(g \circ f)$$ surjective does **not** force $$f$$ to be surjective.
+
+The safe direction is exactly what E8 and E9 prove.
+
+---
+
+## Rust mirror
+
+For the finite-set version of these exercises, read the symbols this way:
+
+- $$f : A \to B$$ becomes `FiniteFunction<A, B>`
+- $$f(S)$$ becomes `image_of(&subset)`
+- $$f^{-1}(T)$$ becomes `preimage_of(&subset)`
+
+```rust
+use std::collections::{HashMap, HashSet};
+
+use p00_math_maturity::functions::FiniteFunction;
+
+let f = FiniteFunction::new(
+	HashMap::from([(1, 2), (2, 4), (3, 6)]),
+	HashSet::from([2, 4, 6]),
+);
+
+assert_eq!(f.image_of(&HashSet::from([1, 2])), HashSet::from([2, 4]));
+assert_eq!(f.preimage_of(&HashSet::from([2, 6])), HashSet::from([1, 3]));
+```
 
 ---
 

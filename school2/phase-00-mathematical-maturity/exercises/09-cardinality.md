@@ -4,6 +4,8 @@
 > and the diagonal argument. Resist the urge to wave your hands at "infinity."  
 > Write out the actual bijection or the actual contradiction.
 
+**Convention:** here $$\mathbb{N} = \{0,1,2,3,\ldots\}$$.
+
 ---
 
 ## Tier 1 — Warm-up: bijection proofs for finite sets
@@ -51,7 +53,8 @@ This gives the sequence $$0, -1, 1, -2, 2, -3, 3, \ldots$$
 
 **Worked answer:**
 
-Arrange all fractions $$p/q$$ (with $$q > 0$$, not necessarily in lowest terms) in a doubly-infinite grid:
+Arrange fractions $$p/q$$ with non-negative numerator $$p$$ and positive denominator $$q$$
+in an infinite grid:
 
 ```
   q=1   q=2   q=3   q=4  ...
@@ -67,7 +70,7 @@ Traverse the grid diagonally:
 $$0/1 \to 1/1 \to 0/2 \to 0/3 \to 1/2 \to 2/1 \to 3/1 \to 2/2 \to \ldots$$
 
 Skip entries already seen in reduced form. This visits every positive rational, giving a surjection  
-(and hence a bijection after tidying up) from ℕ to ℚ⁺. Adding the negatives by interleaving  
+(and hence a bijection after deleting duplicates) from ℕ to ℚ⁺. Adding the negatives by interleaving  
 then shows all of ℚ is countable. ∎
 
 ---
@@ -117,8 +120,9 @@ $$0.4999\ldots = 0.5000\ldots$$
 If the diagonal number happened to be constructed using a digit 0 or 9, we might accidentally  
 produce a number that coincides with one on the list under its alternative decimal form.
 
-By choosing, say, only digits 5 and 6, we ensure the constructed $$x$$ has a unique decimal  
-representation and the argument is airtight.
+By choosing, say, only digits 5 and 6, and by writing each listed real in the expansion that does
+not end in repeating 9s, we ensure the constructed $$x$$ has a unique decimal representation and
+the argument is airtight.
 
 ---
 
@@ -131,7 +135,39 @@ A bijection $$f : \mathbb{N} \to (0,1)$$ would produce exactly such a list by se
 Since the diagonal argument shows every such list is incomplete (misses at least one element),  
 no such bijection can exist.
 
-Therefore $$|(0,1)|  \ne |\mathbb{N}|$$, and since $$\mathbb{N}$$ injects into $$(0,1)$$, we have $$|(0,1)| > |\mathbb{N}|$$. ∎
+Also, there is an injection $$\mathbb{N} \to (0,1)$$, for example $$n \mapsto \frac{1}{n+2}$$. So
+$$|\mathbb{N}| \le |(0,1)|$$. Since equality is impossible, we conclude $$|\mathbb{N}| < |(0,1)|$$. ∎
+
+---
+
+## Rust mirror
+
+You can sanity-check the finite versions of these ideas against `src/cardinality.rs`:
+
+```rust
+use std::collections::HashSet;
+
+use p00_math_maturity::cardinality::{
+  diagonal_flip,
+  nat_to_int_sequence,
+  same_cardinality_finite,
+};
+
+let left: HashSet<u8> = [1, 2, 3].into_iter().collect();
+let right: HashSet<char> = ['a', 'b', 'c'].into_iter().collect();
+assert!(same_cardinality_finite(&left, &right));
+
+assert_eq!(nat_to_int_sequence(5), vec![0, -1, 1, -2, 2]);
+
+let listed = vec![
+  vec![1, 0, 0],
+  vec![0, 1, 0],
+  vec![0, 0, 1],
+];
+let diagonal = diagonal_flip(&listed);
+assert_eq!(diagonal, vec![0, 0, 0]);
+assert!(!listed.contains(&diagonal));
+```
 
 ---
 

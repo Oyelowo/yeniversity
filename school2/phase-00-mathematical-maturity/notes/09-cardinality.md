@@ -17,6 +17,10 @@ Two sets have the same size if and only if there is a bijection between them.
 This single idea leads to one of the most surprising results in all of mathematics:  
 not all infinities are the same size.
 
+**Convention in this lesson:** $$\mathbb{N} = \{0,1,2,3,\ldots\}$$.
+If you prefer $$\{1,2,3,\ldots\}$$, the formulas shift by 1, but none of the
+cardinality arguments change.
+
 ---
 
 ## 2. Cardinality via Bijections
@@ -52,6 +56,9 @@ A set A is **countably infinite** if $$|A| = |\mathbb{N}|$$, i.e., there is a bi
 Informally: a set is countably infinite if you can list its elements as a (non-repeating) sequence that eventually reaches every element:
 
 $$a_0, a_1, a_2, a_3, \ldots$$
+
+The "non-repeating" part is what makes this a bijection. If you first find a list with
+repeats, you can often delete later duplicates and recover a repetition-free listing.
 
 A set is **countable** if it is finite or countably infinite.
 
@@ -99,7 +106,8 @@ Then there exists a list that enumerates every real in $$(0,1)$$:
 
 $$r_0, r_1, r_2, r_3, \ldots$$
 
-Write each $$r_i$$ in its decimal expansion:
+For each $$r_i$$, choose its decimal expansion that does **not** end in repeating 9s,
+and write:
 
 $$r_0 = 0.\;d_{00}\;d_{01}\;d_{02}\;d_{03}\;\cdots$$
 $$r_1 = 0.\;d_{10}\;d_{11}\;d_{12}\;d_{13}\;\cdots$$
@@ -112,7 +120,8 @@ where $$d_{ij} \in \{0,1,\ldots,9\}$$.
 
 $$x_i = \begin{cases} 5 & \text{if } d_{ii} \ne 5 \\ 6 & \text{if } d_{ii} = 5 \end{cases}$$
 
-(Any two distinct digits avoiding 0 and 9 work; avoiding 0 and 9 prevents the $$0.999\ldots = 1$$ ambiguity.)
+(Choosing list expansions without trailing 9s, and using only 5 and 6 for $$x$$,
+avoids decimal-representation ambiguity altogether.)
 
 **x is in (0,1).** Since x uses only digits 5 and 6, we have $$0 < x < 1$$. ✓
 
@@ -143,6 +152,43 @@ r₃ = 0.  d₃₀   d₃₁   d₃₂  [d₃₃] ...    ← diagonal cell (3,3)
 
 The key insight: if the list has infinitely many rows, we can still construct x by reading
 off the diagonal and flipping each digit — x then disagrees with every row in at least one spot.
+
+### Rust mirror: finite analogues
+
+`src/cardinality.rs` cannot prove facts about all infinite sets, but it does model the same
+shapes of argument on finite data:
+
+- `same_cardinality_finite` mirrors "same size" for finite sets
+- `nat_to_int_sequence` mirrors the standard listing of $$\mathbb{Z}$$ by $$\mathbb{N}$$
+- `diagonal_flip` mirrors Cantor's diagonal construction on finite bit strings
+
+```rust
+use std::collections::HashSet;
+
+use p00_math_maturity::cardinality::{
+  diagonal_flip,
+  nat_to_int_sequence,
+  same_cardinality_finite,
+};
+
+let a: HashSet<u8> = [1, 2, 3].into_iter().collect();
+let b: HashSet<char> = ['a', 'b', 'c'].into_iter().collect();
+assert!(same_cardinality_finite(&a, &b));
+
+assert_eq!(nat_to_int_sequence(7), vec![0, -1, 1, -2, 2, -3, 3]);
+
+let list = vec![
+  vec![0, 1, 0, 1],
+  vec![1, 0, 1, 0],
+  vec![0, 0, 1, 1],
+  vec![1, 1, 0, 0],
+];
+let diagonal = diagonal_flip(&list);
+assert_eq!(diagonal, vec![1, 1, 0, 1]);
+```
+
+The last example is only a finite simulation, but it captures the same logic:
+construct a new object by forcing it to differ from row $$i$$ at position $$i$$.
 
 ---
 

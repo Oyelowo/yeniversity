@@ -36,6 +36,21 @@ The symbol $$\exists!$$ means "there exists exactly one."
 
 The **range is always a subset of the codomain**, but they need not be equal.
 
+### Common pitfall: the formula is not the whole function
+
+Injective, surjective, and bijective are properties of the full arrow $$f : A \to B$$,
+not just of the expression "$$f(x) = \cdots$$".
+
+The same rule can define different functions when the codomain changes.
+
+- $$f : \mathbb{Z} \to \mathbb{Z},\; f(n) = 2n$$ is injective but not surjective.
+- If $$E = \{2k : k \in \mathbb{Z}\}$$ and $$g : \mathbb{Z} \to E,\; g(n) = 2n$$, then $$g$$ is bijective.
+
+So when classifying a function, always ask two questions:
+
+1. What is the rule?
+2. What is the codomain?
+
 ---
 
 ## 3. Three Key Properties
@@ -81,7 +96,7 @@ The integer 3 has no preimage (there is no integer $$n$$ with $$2n = 3$$). ✗
 
 ### Bijective
 
-($$f$$) is bijective if it is both injective and surjective.
+`f` is bijective if it is both injective and surjective.
 
 A bijection establishes a **perfect pairing** between A and B: every element of A maps to a unique
 element of B, and every element of B gets hit by exactly one element of A.
@@ -177,8 +192,41 @@ For $$f : A \to B$$:
 The preimage is defined even when f has no inverse function.
 
 **Key facts:**
-- ($$f^{-1}(f(S)) \supseteq S$$); equality holds when f is injective.
-- ($$f(f^{-1}(T)) \subseteq T$$); equality holds when f is surjective.
+- $$f^{-1}(f(S)) \supseteq S$$; equality holds when f is injective.
+- $$f(f^{-1}(T)) \subseteq T$$; equality holds when f is surjective.
+
+### Rust mirror for finite functions
+
+In `src/functions.rs`, a finite function is represented as a map together with an
+explicit codomain:
+
+- $$f : A \to B$$ corresponds to `FiniteFunction<A, B>`
+- $$S \subseteq A$$ corresponds to `HashSet<A>`
+- $$f(S)$$ corresponds to `image_of(&subset)`
+- $$f^{-1}(T)$$ corresponds to `preimage_of(&subset)`
+
+```rust
+use std::collections::{HashMap, HashSet};
+
+use p00_math_maturity::functions::FiniteFunction;
+
+let onto_small_codomain = FiniteFunction::new(
+  HashMap::from([(1, 2), (2, 4), (3, 6)]),
+  HashSet::from([2, 4, 6]),
+);
+assert!(onto_small_codomain.is_injective());
+assert!(onto_small_codomain.is_surjective());
+
+let same_rule_larger_codomain = FiniteFunction::new(
+  HashMap::from([(1, 2), (2, 4), (3, 6)]),
+  HashSet::from([1, 2, 3, 4, 5, 6]),
+);
+assert!(same_rule_larger_codomain.is_injective());
+assert!(!same_rule_larger_codomain.is_surjective());
+```
+
+This is the finite-set version of the codomain warning above: the rule is the same,
+but surjectivity changes when the target set changes.
 
 ---
 
