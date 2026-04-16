@@ -171,9 +171,9 @@ The safe direction is exactly what E8 and E9 prove.
 
 For the finite-set version of these exercises, read the symbols this way:
 
-- $$f : A \to B$$ becomes `FiniteFunction<A, B>`
-- $$f(S)$$ becomes `image_of(&subset)`
-- $$f^{-1}(T)$$ becomes `preimage_of(&subset)`
+- | $$f : A \to B$$ becomes `FiniteFunction<A, B>`
+- | $$f(S)$$ becomes `image_of(&subset)`
+- | $$f^{-1}(T)$$ becomes `preimage_of(&subset)`
 
 ```rust
 use std::collections::{HashMap, HashSet};

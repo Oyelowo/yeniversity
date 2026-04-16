@@ -80,10 +80,10 @@ then shows all of ℚ is countable. ∎
 **E5.** Carry out the diagonal argument on the following supposed enumeration of reals in (0,1).  
 Exhibit a specific $$x \in (0,1)$$ not in the list.
 
-$$r_0 = 0.1234567890\ldots$$  
-$$r_1 = 0.9876543210\ldots$$  
-$$r_2 = 0.1111111111\ldots$$  
-$$r_3 = 0.3141592653\ldots$$
+| $$r_0 = 0.1234567890\ldots$$  
+| $$r_1 = 0.9876543210\ldots$$  
+| $$r_2 = 0.1111111111\ldots$$  
+| $$r_3 = 0.3141592653\ldots$$
 
 Use the rule: $$x_i = 5$$ if $$d_{ii} \ne 5$$, else $$x_i = 6$$.
 
@@ -227,10 +227,10 @@ $$\{1,2,3\},\quad \mathbb{N},\quad \mathbb{Z},\quad \mathbb{Q},\quad \mathbb{R},
 
 $$|\{1,2,3\}| < |\mathbb{N}| = |\mathbb{Z}| = |\mathbb{Q}| < |\mathbb{R}| < |\mathcal{P}(\mathbb{R})|$$
 
-- $$|\{1,2,3\}| = 3$$ (finite).
-- $$|\mathbb{N}| = |\mathbb{Z}| = |\mathbb{Q}| = \aleph_0$$ (all countably infinite).
-- $$|\mathbb{R}| = \mathfrak{c} > \aleph_0$$ (diagonal argument).
-- $$|\mathcal{P}(\mathbb{R})| > |\mathbb{R}|$$ (Cantor's theorem).
+- | $$|\{1,2,3\}| = 3$$ (finite).
+- | $$|\mathbb{N}| = |\mathbb{Z}| = |\mathbb{Q}| = \aleph_0$$ (all countably infinite).
+- | $$|\mathbb{R}| = \mathfrak{c} > \aleph_0$$ (diagonal argument).
+- | $$|\mathcal{P}(\mathbb{R})| > |\mathbb{R}|$$ (Cantor's theorem).
 
 ---
 
