@@ -27,8 +27,8 @@
 | 5 | Mathematical Induction — weak and strong form | ⏳ |
 | 6 | Set Theory — sets, subsets, power sets, operations | ⏳ |
 | 7 | Relations — equivalence relations, partial orders | ⏳ |
-| 8 | Functions — injection, surjection, bijection, composition | ❌ |
-| 9 | Cardinality — countable vs uncountable, Cantor's diagonal argument | ❌ |
+| 8 | Functions — injection, surjection, bijection, composition | ⏳ |
+| 9 | Cardinality — countable vs uncountable, Cantor's diagonal argument | ⏳ |
 
 ### Completion Criteria (self-test before moving to Phase 01)
 - [ ] Write a rigorous proof of any induction claim on demand
